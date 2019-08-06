@@ -19,24 +19,9 @@ import {
 
 declare var ethers;
 declare var web3;
-declare var ethereum;
 
-const {
-  bigNumberify,
-  computeAddress,
-  solidityKeccak256,
-  HDNode
-} = ethers.utils;
+const { solidityKeccak256 } = ethers.utils;
 const { HashZero } = ethers.constants;
-const { fromExtendedKey } = HDNode;
-
-function xkeyKthAddress(xkey: string, k: number): string {
-  return computeAddress(xkeyKthHDNode(xkey, k).publicKey);
-}
-
-function xkeyKthHDNode(xkey: string, k: number): any {
-  return fromExtendedKey(xkey).derivePath(`${k}`);
-}
 
 @Component({
   tag: "app-root",
@@ -137,23 +122,7 @@ export class AppRoot {
   }
 
   async componentDidLoad() {
-    if (window === window.parent) {
-      // dApp not running in iFrame
-      const userResult = await ethereum.send("counterfactual:request:user");
-      const account = userResult.result;
-      const balancesResult = await ethereum.send(
-        "counterfactual:request:balances",
-        [account.multisigAddress]
-      );
-      const freeBalance = balancesResult.result;
-      const freeBalanceAddress = xkeyKthAddress(account.nodeAddress, 0);
-      const myBalance = bigNumberify(freeBalance[freeBalanceAddress]);
-      account.balance = myBalance;
-      this.updateAccount(account);
-      this.userDataReceived = true;
-    } else {
-      window.parent.postMessage("playground:request:user", "*");
-    }
+    window.parent.postMessage("playground:request:user", "*");
 
     if (this.state.standalone) {
       const mockAccount = {
@@ -177,7 +146,7 @@ export class AppRoot {
   updateAccount(account: any) {
     this.state = { ...this.state, account };
 
-    ga("set", "userId", account.id);
+    ga("set", "userId", account.user.id);
   }
 
   updateOpponent(opponent: any) {
@@ -329,10 +298,7 @@ export class AppRoot {
                       url="/wager"
                       component="app-wager"
                       componentProps={{
-                        updateOpponent: this.state.updateOpponent,
-                        provideRouterHistory: this.receiveRouterHistory.bind(
-                          this
-                        )
+                        updateOpponent: this.state.updateOpponent
                       }}
                     />
                     <stencil-route url="/game" component="app-game" />

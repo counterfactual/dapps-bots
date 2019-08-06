@@ -1,5 +1,4 @@
 declare var ethers;
-declare var ethereum;
 
 import { Component, Element, Prop, State, Watch } from "@stencil/core";
 import { RouterHistory } from "@stencil/router";
@@ -23,7 +22,6 @@ const { HashZero } = ethers.constants;
 export class AppWager {
   @Element() private readonly el: HTMLStencilElement = {} as HTMLStencilElement;
 
-  @Prop() provideRouterHistory: (history: RouterHistory) => void = () => {};
   @Prop() history: RouterHistory = {} as RouterHistory;
   @Prop() appFactory: cf.AppFactory = {} as cf.AppFactory;
   @State() betAmount: string = "0.01";
@@ -47,9 +45,8 @@ export class AppWager {
   @Prop() updateOpponent: (opponent: any) => void = () => {};
 
   async componentWillLoad() {
-    this.provideRouterHistory(this.history);
+    this.myName = this.account.user.username;
 
-    this.myName = this.account.username;
     return await this.matchmake();
   }
 
@@ -70,9 +67,7 @@ export class AppWager {
         versionNumber: 0
       };
 
-      const currentEthBalance = ethers.utils.parseEther(
-        this.account.balance.toString(10)
-      );
+      const currentEthBalance = ethers.utils.parseEther(this.account.balance);
       const bet = ethers.utils.parseEther(this.betAmount);
 
       if (currentEthBalance.lt(bet)) {
@@ -145,7 +140,7 @@ export class AppWager {
             users: {
               data: {
                 type: "users",
-                id: this.account.id
+                id: this.account.user.id
               }
             },
             matchedUser: {
@@ -161,8 +156,8 @@ export class AppWager {
             type: "users",
             id: this.account.user.id,
             attributes: {
-              username: this.account.username,
-              ethAddress: this.account.ethAddress
+              username: this.account.user.username,
+              ethAddress: this.account.user.ethAddress
             }
           },
           {
@@ -177,24 +172,22 @@ export class AppWager {
       };
     }
 
-    if (window === window.parent) {
-      // dApp not running in iFrame
-      const data = await ethereum.send("counterfactual:request:matchmake");
-      const opponent = { data: data.result };
-      return opponent;
-    }
-
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
       const onMatchmakeResponse = (event: MessageEvent) => {
-        if (event.data.toString().startsWith("playground:response:matchmake")) {
-          window.removeEventListener("message", onMatchmakeResponse);
-
-          const [, data] = event.data.split("|");
-          resolve(JSON.parse(data));
+        if (
+          !event.data.toString().startsWith("playground:response:matchmake")
+        ) {
+          return;
         }
+
+        window.removeEventListener("message", onMatchmakeResponse);
+
+        const [, data] = event.data.split("|");
+        resolve(JSON.parse(data));
       };
 
       window.addEventListener("message", onMatchmakeResponse);
+
       window.parent.postMessage("playground:request:matchmake", "*");
     });
   }
