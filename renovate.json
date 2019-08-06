@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "schedule": ["every weekend"],
+  "baseBranches": ["next"],
+  "automerge": true,
+  "ignoreDeps": [
+    "firebase",
+    "@stencil/core",
+    "@stencil/router",
+    "@stencil/sass",
+    "@types/jest",
+    "jest-cli",
+    "jest",
+    "react-scripts",
+    "workbox-build",
+    "@ebryn/jsonapi-ts",
+    "@counterfactual/apps",
+    "@counterfactual/cf.js",
+    "@counterfactual/cf-adjudicator-contracts",
+    "@counterfactual/cf-funding-protocol-contracts",
+    "@counterfactual/dapp-high-roller",
+    "@counterfactual/dapp-tic-tac-toe",
+    "@counterfactual/node-provider",
+    "@counterfactual/node",
+    "@counterfactual/playground",
+    "@counterfactual/specs",
+    "@counterfactual/types",
+    "@counterfactual/typescript-typings"
+  ]
+}
