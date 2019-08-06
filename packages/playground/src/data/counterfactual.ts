@@ -47,9 +47,6 @@ export default class CounterfactualNode {
   private static cfProvider: cfWallet.Provider;
 
   static getInstance(): Node {
-    if (window.parent !== window) {
-      throw new Error("Trying to get Node in MM");
-    }
     return CounterfactualNode.node;
   }
 

@@ -40,20 +40,12 @@ export class NodeListener {
   };
 
   get cfProvider() {
-    if (window.parent !== window) {
-      // Inside iFrame
-      throw new Error("Don't get Node when in iFrame");
-    }
     return CounterfactualNode.getCfProvider();
   }
 
   async componentWillLoad() {
     if (this.web3Detected) {
-      if (window.parent === window && false) {
-        // TODO remove FALSE
-        // Not Inside iFrame
-        // this.bindNodeEvents();
-      }
+      this.bindNodeEvents();
     }
   }
 

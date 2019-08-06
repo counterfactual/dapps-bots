@@ -1,5 +1,3 @@
-declare var ethereum;
-
 import { CreateChannelMessage } from "@counterfactual/node";
 import { Node } from "@counterfactual/types";
 import { Component, State } from "@stencil/core";
@@ -70,26 +68,7 @@ export class AppRoot {
       this.hasLocalStorage = false;
     }
 
-    if (window.parent !== window) {
-      // Inside iFrame
-      const userToken = localStorage.getItem("playground:user:token");
-      if (userToken) {
-        ethereum.send("counterfactual:set:user", [userToken]);
-      }
-    }
-
     this.setup();
-  }
-
-  async getNodeAddress(): Promise<string> {
-    const nodeAddress = localStorage.getItem("playground:node:address");
-    if (nodeAddress) {
-      return nodeAddress;
-    }
-
-    const data = await ethereum.send("counterfactual:get:nodeAddress");
-    localStorage.setItem("playground:node:address", data.result);
-    return data.result;
   }
 
   async updateAccount(newProps: Partial<AccountState>) {
@@ -143,17 +122,12 @@ export class AppRoot {
     this.loadEnv();
     this.loadSentry();
 
-    const toSetup: Promise<any>[] = [this.heartbeat(), this.loadApps()];
-    if (window.parent === window && false) {
-      // TODO remove FALSE
-      // Not Inside iFrame
-      // toSetup.push(this.createNodeProvider());
-    } else {
-      toSetup.push(this.getNodeAddress());
-    }
-
     if (typeof window["web3"] !== "undefined") {
-      await Promise.all(toSetup);
+      await Promise.all([
+        this.heartbeat(),
+        this.createNodeProvider(),
+        this.loadApps()
+      ]);
     }
 
     this.loading = false;
@@ -173,7 +147,7 @@ export class AppRoot {
     if (TIER === "dev") {
       configuration = {
         databaseURL: `ws://${FIREBASE_SERVER_HOST}:${FIREBASE_SERVER_PORT}`,
-        projectId: "projectId",
+        projectId: "",
         apiKey: "",
         authDomain: "",
         storageBucket: "",
@@ -373,10 +347,7 @@ export class AppRoot {
       user: { multisigAddress, ethAddress, nodeAddress }
     } = this.accountState;
     const { provider } = this.walletState;
-    // <<<<<<< HEAD
-    // =======
-    //     const cfProvider = CounterfactualNode.getCfProvider();
-    // >>>>>>> master
+    const cfProvider = CounterfactualNode.getCfProvider();
 
     if (!multisigAddress || !ethAddress) {
       return {
@@ -385,31 +356,23 @@ export class AppRoot {
       };
     }
 
-    // <<<<<<< HEAD
-    const data = await ethereum.send("counterfactual:request:balances", [
-      multisigAddress
-    ]);
-    const freeBalance = data.result;
-    console.log("received getBalances response", freeBalance);
-    // =======
-    //     let freeBalance;
+    let freeBalance;
 
-    //     try {
-    //       freeBalance = await cfProvider.getFreeBalanceState(multisigAddress);
-    //     } catch (e) {
-    //       // TODO: Use better typed error messages with error codes
-    //       if (e.toString().includes("Call to getFreeBalanceState failed")) {
-    //         await this.updateAccount({ hasCorruptStateChannelState: true });
-    //         return {
-    //           ethFreeBalanceWei: window["ethers"].constants.Zero,
-    //           ethMultisigBalance: window["ethers"].constants.Zero
-    //         };
-    //       }
+    try {
+      freeBalance = await cfProvider.getFreeBalanceState(multisigAddress);
+    } catch (e) {
+      // TODO: Use better typed error messages with error codes
+      if (e.toString().includes("Call to getFreeBalanceState failed")) {
+        await this.updateAccount({ hasCorruptStateChannelState: true });
+        return {
+          ethFreeBalanceWei: window["ethers"].constants.Zero,
+          ethMultisigBalance: window["ethers"].constants.Zero
+        };
+      }
 
-    //       throw e;
-    //     }
+      throw e;
+    }
 
-    // >>>>>>> master
     // Had to reimplement this on the frontend because the method can't be imported
     // due to window["ethers"] not playing nice with ES Modules in this context.
     const getAddress = (xkey: string, k: number) =>
@@ -424,12 +387,12 @@ export class AppRoot {
       addr => addr !== myFreeBalanceAddress
     );
 
-    const myBalance = window["ethers"].utils.bigNumberify((freeBalance[
+    const myBalance = (freeBalance[
       myFreeBalanceAddress
-    ] as unknown) as BigNumber);
-    const counterpartyBalance = window["ethers"].utils.bigNumberify(
-      (freeBalance[counterpartyFreeBalanceAddress] as unknown) as BigNumber
-    );
+    ] as unknown) as BigNumber;
+    const counterpartyBalance = (freeBalance[
+      counterpartyFreeBalanceAddress
+    ] as unknown) as BigNumber;
 
     const vals = {
       ethFreeBalanceWei: myBalance,
@@ -467,6 +430,7 @@ export class AppRoot {
         );
       }
     }
+
     return vals;
   }
 
@@ -488,48 +452,27 @@ export class AppRoot {
     const token = localStorage.getItem("playground:user:token")!;
     const { multisigAddress } = await PlaygroundAPIClient.getUser(token);
 
-    ethereum.send("counterfactual:request:deposit_start").then(async data => {
+    const provider = CounterfactualNode.getCfProvider();
+
+    provider.once(Node.EventName.DEPOSIT_STARTED, async args => {
       console.log("Playground#deposit: DEPOSIT_STARTED");
       await this.updateAccount({
-        ethPendingDepositTxHash: data.txHash,
-        ethPendingDepositAmountWei: data.value
+        ethPendingDepositTxHash: args.txHash,
+        ethPendingDepositAmountWei: valueInWei
       });
     });
-    ethereum
-      .send("counterfactual:request:deposit_confirmed")
-      .then(async data => {
-        console.log("Playground#deposit: DEPOSIT_CONFIRMED");
-        await this.getBalances();
-        await this.resetPendingDepositState();
-      });
-    // provider.once(Node.EventName.DEPOSIT_STARTED, async args => {
-    //   console.log("Playground#deposit: DEPOSIT_STARTED");
-    //   await this.updateAccount({
-    //     ethPendingDepositTxHash: args.txHash,
-    //     ethPendingDepositAmountWei: valueInWei
-    //   });
-    // });
 
-    // provider.once(Node.EventName.DEPOSIT_CONFIRMED, async args => {
-    //   await this.getBalances();
-    //   await this.resetPendingDepositState();
-    // });
+    provider.once(Node.EventName.DEPOSIT_CONFIRMED, async args => {
+      await this.getBalances();
+      await this.resetPendingDepositState();
+    });
 
     let ret;
 
     try {
-      // <<<<<<< HEAD
       const amount = window["ethers"].utils.bigNumberify(valueInWei);
 
-      ret = (await ethereum.send("counterfactual:request:deposit", [
-        amount,
-        multisigAddress
-      ])) as Node.DepositParams;
-      // =======
-      //       const amount = window["ethers"].utils.bigNumberify(valueInWei);
-
-      //       ret = await provider.deposit(multisigAddress, amount);
-      // >>>>>>> master
+      ret = await provider.deposit(multisigAddress, amount);
     } catch (e) {
       console.error(e);
     }
@@ -571,17 +514,11 @@ export class AppRoot {
   }
 
   waitForMultisig() {
-    // <<<<<<< HEAD
-    ethereum.send("counterfactual:listen:createChannel").then(data => {
-      this.setMultisigAddress(data.result);
-    });
-    // =======
-    //     const provider = CounterfactualNode.getCfProvider();
-    //     provider.once(
-    //       Node.EventName.CREATE_CHANNEL,
-    //       this.setMultisigAddress.bind(this)
-    //     );
-    // >>>>>>> master
+    const provider = CounterfactualNode.getCfProvider();
+    provider.once(
+      Node.EventName.CREATE_CHANNEL,
+      this.setMultisigAddress.bind(this)
+    );
   }
 
   async setMultisigAddress(createChannelMsg: CreateChannelMessage) {

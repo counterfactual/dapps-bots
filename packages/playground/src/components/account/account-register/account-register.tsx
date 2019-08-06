@@ -10,8 +10,6 @@ import PlaygroundAPIClient from "../../../data/playground-api-client";
 import WalletTunnel from "../../../data/wallet";
 import { UserChangeset, UserSession } from "../../../types";
 
-declare var ethereum;
-
 function buildRegistrationSignaturePayload(data: UserChangeset) {
   return [
     "PLAYGROUND ACCOUNT REGISTRATION",
@@ -48,10 +46,7 @@ export class AccountRegister {
     username: "",
     email: "",
     ethAddress: this.user.ethAddress,
-    nodeAddress:
-      window.parent !== window
-        ? localStorage.getItem("playground:node:address") || ""
-        : CounterfactualNode.getInstance().publicIdentifier
+    nodeAddress: CounterfactualNode.getInstance().publicIdentifier
   };
 
   @State() errors: UserChangeset = {
@@ -74,16 +69,6 @@ export class AccountRegister {
     }
   }
 
-  sendUserTokenToMetaMask() {
-    if (window.parent !== window) {
-      // Inside iFrame
-      const userToken = localStorage.getItem("playground:user:token");
-      if (userToken) {
-        ethereum.send("counterfactual:set:user", [userToken]);
-      }
-    }
-  }
-
   async login(e: MouseEvent) {
     e.preventDefault();
 
@@ -99,8 +84,6 @@ export class AccountRegister {
     );
 
     window.localStorage.setItem("playground:user:token", user.token as string);
-
-    this.sendUserTokenToMetaMask();
 
     this.updateAccount({ user });
 
@@ -156,8 +139,6 @@ export class AccountRegister {
         "playground:user:token",
         newAccount.token as string
       );
-
-      this.sendUserTokenToMetaMask();
 
       ga("set", "userId", newAccount.id);
 
