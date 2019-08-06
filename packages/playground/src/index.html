@@ -29,12 +29,12 @@
       src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="/assets/eventemitter3.js"></script>
-    <script src="/assets/ethers.js"></script>
-    <script src="/assets/common-types.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/eventemitter3/4.0.0/index.min.js"></script>
+    <script src="https://unpkg.com/ethers@4.0.33/dist/ethers.min.js"></script>
+    <script src="https://unpkg.com/@counterfactual/types@0.0.30/dist/index-iife.js"></script>
 
     <script>
-      EventEmitter = EventEmitter3.EventEmitter;
       hdnode = ethers.utils.HDNode;
       utils = ethers.utils;
       constants = ethers.constants;
@@ -47,30 +47,38 @@
     </script>
 
     <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-114409337-5', 'auto');
+      window.ga =
+        window.ga ||
+        function() {
+          (ga.q = ga.q || []).push(arguments);
+        };
+      ga.l = +new Date();
+      ga("create", "UA-114409337-5", "auto");
 
-      const userId = window.localStorage.getItem("playground:user:token")
+      const userId = window.localStorage.getItem("playground:user:token");
 
       if (userId) {
-        ga('set', 'userId', userId);
+        ga("set", "userId", userId);
       }
 
-      ga('require', 'urlChangeTracker');
+      ga("require", "urlChangeTracker");
 
-      ga('send', 'pageview');
+      ga("send", "pageview");
     </script>
     <script async src="https://www.google-analytics.com/analytics.js"></script>
-    <script asynt src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"></script>
+    <script
+      asynt
+      src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"
+    ></script>
 
-    <script src="/assets/cf.js"></script>
-    <script src="/assets/cf-wallet.js"></script>
+    <script src="https://unpkg.com/@counterfactual/cf.js@0.2.3/dist/index-iife.js"></script>
+    <script src="https://unpkg.com/@counterfactual/cf-wallet.js@0.2.1/dist/index-iife.js"></script>
 
     <script>
       cfjs = cf;
     </script>
 
-    <script src="/assets/node.js"></script>
+    <script src="https://unpkg.com/@counterfactual/node@0.2.40/dist/index.iife.js"></script>
 
     <script src="/build/app.js"></script>
 
@@ -78,25 +86,43 @@
     <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
 
-    <meta property="og:image" content="http://playground-staging.counterfactual.com/assets/social/facebook.png" />
-    <meta property="og:secure_url" content="https://playground-staging.counterfactual.com/assets/social/facebook.png" />
+    <meta
+      property="og:image"
+      content="http://playground-staging.counterfactual.com/assets/social/facebook.png"
+    />
+    <meta
+      property="og:secure_url"
+      content="https://playground-staging.counterfactual.com/assets/social/facebook.png"
+    />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
 
     <meta property="og:title" content="State Channels Playground" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="A demo of state channels on Ethereum. Dapps with no fees and instant response times." />
+    <meta
+      property="og:description"
+      content="A demo of state channels on Ethereum. Dapps with no fees and instant response times."
+    />
     <meta property="og:url" content="http://playground.counterfactual.com/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@statechannels" />
     <meta name="twitter:creator" content="@statechannels" />
     <meta name="twitter:title" content="Counterfactual Playground" />
-    <meta name="twitter:description" content="A demo of state channels on Ethereum. Dapps with no fees and instant response times." />
-    <meta name="twitter:image" content="http://playground-staging.counterfactual.com/assets/social/twitter.png" />
+    <meta
+      name="twitter:description"
+      content="A demo of state channels on Ethereum. Dapps with no fees and instant response times."
+    />
+    <meta
+      name="twitter:image"
+      content="http://playground-staging.counterfactual.com/assets/social/twitter.png"
+    />
 
-    <meta name="description" content="A demo of state channels on Ethereum. Dapps with no fees and instant response times." />
+    <meta
+      name="description"
+      content="A demo of state channels on Ethereum. Dapps with no fees and instant response times."
+    />
   </head>
   <body>
     <app-root></app-root>
