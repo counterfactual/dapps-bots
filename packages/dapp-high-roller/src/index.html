@@ -22,29 +22,40 @@
       all of this.
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
-    <script src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js" crossorigin="anonymous"></script>
-    <script src="/assets/eventemitter3.js"></script>
-    <script src="/assets/ethers.js"></script>
-    <script src="/assets/types.js"></script>
+    <script
+      src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/eventemitter3/4.0.0/index.min.js"></script>
+    <script src="https://unpkg.com/ethers@4.0.33/dist/ethers.min.js"></script>
+    <script src="https://unpkg.com/@counterfactual/types@0.0.30/dist/index-iife.js"></script>
 
     <script>
-      EventEmitter = EventEmitter3.EventEmitter;
-      
-      Sentry.init({ dsn: 'https://ebda34bbd0ea4304a701909736be3682@sentry.io/1383486' });
+      Sentry.init({
+        dsn: "https://ebda34bbd0ea4304a701909736be3682@sentry.io/1383486"
+      });
     </script>
 
     <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-114409337-5', 'auto');
-      
-      ga('require', 'urlChangeTracker');
-      
-      ga('send', 'pageview');
+      window.ga =
+        window.ga ||
+        function() {
+          (ga.q = ga.q || []).push(arguments);
+        };
+      ga.l = +new Date();
+      ga("create", "UA-114409337-5", "auto");
+
+      ga("require", "urlChangeTracker");
+
+      ga("send", "pageview");
     </script>
     <script async src="https://www.google-analytics.com/analytics.js"></script>
-    <script asynt src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"></script>
+    <script
+      asynt
+      src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"
+    ></script>
 
-    <script src="/assets/cf.js"></script>
+    <script src="https://unpkg.com/@counterfactual/cf.js@0.2.3/dist/index-iife.js"></script>
     <script src="/build/app.js"></script>
 
     <link rel="apple-touch-icon" href="/assets/icon/icon.png" />
