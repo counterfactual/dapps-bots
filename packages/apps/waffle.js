@@ -1,1 +1,0 @@
-../cf-adjudicator-contracts/waffle.js
