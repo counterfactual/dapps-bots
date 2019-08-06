@@ -37,9 +37,9 @@
       src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/eventemitter3/3.1.0/index.js"></script>
-    <script src="/ethers.js"></script>
-    <script src="/types.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/eventemitter3/4.0.0/index.min.js"></script>
+    <script src="https://unpkg.com/ethers@4.0.33/dist/ethers.min.js"></script>
+    <script src="https://unpkg.com/@counterfactual/types@0.0.30/dist/index-iife.js"></script>
 
     <script>
       Sentry.init({
@@ -48,17 +48,25 @@
     </script>
 
     <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-114409337-5', 'auto');
-      
-      ga('require', 'urlChangeTracker');
-      
-      ga('send', 'pageview');
+      window.ga =
+        window.ga ||
+        function() {
+          (ga.q = ga.q || []).push(arguments);
+        };
+      ga.l = +new Date();
+      ga("create", "UA-114409337-5", "auto");
+
+      ga("require", "urlChangeTracker");
+
+      ga("send", "pageview");
     </script>
     <script async src="https://www.google-analytics.com/analytics.js"></script>
-    <script asynt src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"></script>
+    <script
+      asynt
+      src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"
+    ></script>
 
-    <script src="/cf.js"></script>
+    <script src="https://unpkg.com/@counterfactual/cf.js@0.2.3/dist/index-iife.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
