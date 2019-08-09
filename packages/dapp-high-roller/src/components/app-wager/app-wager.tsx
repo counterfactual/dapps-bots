@@ -1,8 +1,8 @@
 declare var ethers;
+declare var ethereum;
 
 import { Component, Element, Prop, State, Watch } from "@stencil/core";
 import { RouterHistory } from "@stencil/router";
-
 import CounterfactualTunnel from "../../data/counterfactual";
 import { HighRollerAppState, HighRollerStage } from "../../data/game-types";
 import { AppInstanceInfo, cf } from "../../data/types";
@@ -95,7 +95,7 @@ export class AppWager {
 
       this.isWaiting = true;
     } catch (e) {
-      debugger;
+      console.error(e);
     }
   }
 
@@ -129,24 +129,9 @@ export class AppWager {
   }
 
   private async fetchMatchmake(): Promise<{ [key: string]: any }> {
-    return new Promise(resolve => {
-      const onMatchmakeResponse = (event: MessageEvent) => {
-        if (
-          !event.data.toString().startsWith("playground:response:matchmake")
-        ) {
-          return;
-        }
-
-        window.removeEventListener("message", onMatchmakeResponse);
-
-        const [, data] = event.data.split("|");
-        resolve(JSON.parse(data));
-      };
-
-      window.addEventListener("message", onMatchmakeResponse);
-
-      window.parent.postMessage("playground:request:matchmake", "*");
-    });
+    const data = await ethereum.send("counterfactual:request:matchmake");
+    const opponent = { data: data.result };
+    return opponent;
   }
 
   render() {

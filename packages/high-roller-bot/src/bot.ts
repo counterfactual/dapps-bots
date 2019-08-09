@@ -6,8 +6,6 @@ import {
 } from "@counterfactual/node";
 import { Node as NodeTypes } from "@counterfactual/types";
 import { solidityKeccak256 } from "ethers/utils";
-import { v4 as generateUUID } from "uuid";
-
 import { getFreeBalance, logEthFreeBalance } from "./utils";
 
 // Keep in sync with high-roller-app.spec.ts
@@ -66,15 +64,23 @@ function respond(
       actionHash: hash
     };
 
-    const request = {
-      params: {
+    // const request = {
+    //   params: {
+    //     appInstanceId,
+    //     action: commitHashAction
+    //   } as NodeTypes.TakeActionParams,
+    //   requestId: generateUUID(),
+    //   type: NodeTypes.MethodName.TAKE_ACTION
+    // };
+    // node.call(request.type, request);
+    node.rpcRouter.dispatch({
+      methodName: NodeTypes.RpcMethodName.TAKE_ACTION,
+      id: Date.now(),
+      parameters: {
         appInstanceId,
         action: commitHashAction
-      } as NodeTypes.TakeActionParams,
-      requestId: generateUUID(),
-      type: NodeTypes.MethodName.TAKE_ACTION
-    };
-    node.call(request.type, request);
+      }
+    });
   }
 }
 
@@ -91,16 +97,17 @@ export async function connectNode(
       const intermediaries = msg.data.params.intermediaries;
 
       const request = {
-        type: NodeTypes.MethodName.INSTALL_VIRTUAL,
-        params: {
+        methodName: NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
+        parameters: {
           appInstanceId,
           intermediaries
         },
-        requestId: generateUUID()
+        id: Date.now()
       };
 
       try {
-        await node.call(request.type, request);
+        console.log("Installing app");
+        await node.rpcRouter.dispatch(request);
         node.on(
           NodeTypes.EventName.UPDATE_STATE,
           async (updateEventData: UpdateStateMessage) => {
