@@ -955,6 +955,17 @@
     eventemitter3 "^4.0.0"
     rpc-server "0.0.1"
 
+"@counterfactual/cf.js@0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@counterfactual/cf.js/-/cf.js-0.2.4.tgz#4f4e02ed4c054f13b0bd376c298c4abd964fdf91"
+  integrity sha512-ciJKK5if+tx2MHms0eiw3TuIs4QgPqV6TRr4cvGlZaebAtJt2xi8jiOG5xC0DobU5zW/PYRNgBoQeMZSCDan5g==
+  dependencies:
+    "@counterfactual/node-provider" "0.2.0"
+    "@counterfactual/types" "0.0.31"
+    ethers "4.0.33"
+    eventemitter3 "^4.0.0"
+    rpc-server "0.0.1"
+
 "@counterfactual/firebase-client@0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@counterfactual/firebase-client/-/firebase-client-0.0.3.tgz#ae699f107768b1e4054f6fb08a7e7d3c733b6679"
@@ -977,6 +988,13 @@
   integrity sha512-7DrRocC9etadQq1hXNuLZr0FqEWuWcYrT3EtfnJWUkgHbk8C4/liOo2DS5pR0rYxZhh5SH6kn5QyX08W6Oackw==
   dependencies:
     eventemitter3 "^3.1.0"
+
+"@counterfactual/node-provider@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@counterfactual/node-provider/-/node-provider-0.2.0.tgz#71959dbf940fe834d82af0bb168343cc6a263af3"
+  integrity sha512-ckdepZyyT4wWC0XEmWvgmorWV/e14dwGYUeBFxqJSBArlVHabaTxmKk26Hn337L2BSVnmpT01j7ZkguzBIX7Qg==
+  dependencies:
+    eventemitter3 "^4.0.0"
 
 "@counterfactual/node@0.2.40":
   version "0.2.40"
@@ -1005,6 +1023,11 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.30.tgz#ce758e65105887474afe423c2d7be138aacd67fa"
   integrity sha512-/xAz+v+opyYPUdLVQOak3tk04WpgYF8ZP7atTT5NgAXLcKkvw2QwJvOSHsbIDYXnpzfZopCUPtFoQYD7bYkH8A==
+
+"@counterfactual/types@0.0.31", "@counterfactual/types@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.31.tgz#17006781ea79c7ed27fdfe5e9c3e713da292d8d3"
+  integrity sha512-Jqv1tfXY9mEzi6mzjL5OKzPPVvaKEKqGvqSgQBtqzM98Mf+igcoVx7S9Sg1ioHLhJcC+j1ETfU06DefckUVD6g==
 
 "@counterfactual/typescript-typings@0.1.0":
   version "0.1.0"

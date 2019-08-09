@@ -16,8 +16,7 @@
     "test:e2e": "echo 'E2E tests are disabled, skipping'"
   },
   "dependencies": {
-    "@counterfactual/cf.js": "0.2.3",
-    "@counterfactual/types": "0.0.30",
+    "@counterfactual/cf.js": "0.2.4",
     "@stencil/core": "0.18.1-0",
     "@stencil/router": "0.3.3"
   },
@@ -31,6 +30,7 @@
   },
   "homepage": "https://counterfactual.com",
   "devDependencies": {
+    "@counterfactual/types": "^0.0.31",
     "@stencil/sass": "0.1.1",
     "@types/jest": "23.3.14",
     "@types/puppeteer": "1.19.0",
