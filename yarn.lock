@@ -901,7 +901,12 @@
   resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.30.tgz#ce758e65105887474afe423c2d7be138aacd67fa"
   integrity sha512-/xAz+v+opyYPUdLVQOak3tk04WpgYF8ZP7atTT5NgAXLcKkvw2QwJvOSHsbIDYXnpzfZopCUPtFoQYD7bYkH8A==
 
-"@counterfactual/typescript-typings@0.1.0":
+"@counterfactual/types@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.33.tgz#11b2f9534b5f9e1f23cee3dc197269f78bf51141"
+  integrity sha512-mwgaB43c8dsgrd5M4E/hOtFC81VDX7jEQnVKEXLUne0TAoU8VoiTTjw70se5Vm9R0ARUc42udtjaOG3FXUnOag==
+
+"@counterfactual/typescript-typings@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@counterfactual/typescript-typings/-/typescript-typings-0.1.0.tgz#96ffb1f091f6d24831495596c406c93d0e1ee87c"
   integrity sha512-wunUnkcNQvmlKE88FVedkdlosFSLBlx6ozL25pqEW33dAl29fKr825/Z5c+a90NTMGrczqkrwW7JPoqCQzQhag==

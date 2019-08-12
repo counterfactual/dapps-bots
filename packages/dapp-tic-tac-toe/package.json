@@ -8,7 +8,8 @@
   "dependencies": {
     "@counterfactual/apps": "0.1.5",
     "@counterfactual/cf.js": "0.2.3",
-    "@counterfactual/types": "0.0.30",
+    "@counterfactual/types": "^0.0.33",
+    "@counterfactual/typescript-typings": "^0.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
