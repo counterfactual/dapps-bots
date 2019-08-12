@@ -3,6 +3,7 @@ declare var ethereum;
 
 import { Component, Element, Prop, State, Watch } from "@stencil/core";
 import { RouterHistory } from "@stencil/router";
+
 import CounterfactualTunnel from "../../data/counterfactual";
 import { HighRollerAppState, HighRollerStage } from "../../data/game-types";
 import { AppInstanceInfo, cf } from "../../data/types";

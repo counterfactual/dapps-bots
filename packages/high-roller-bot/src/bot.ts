@@ -6,6 +6,7 @@ import {
 } from "@counterfactual/node";
 import { Node as NodeTypes } from "@counterfactual/types";
 import { solidityKeccak256 } from "ethers/utils";
+
 import { getFreeBalance, logEthFreeBalance } from "./utils";
 
 // Keep in sync with high-roller-app.spec.ts
