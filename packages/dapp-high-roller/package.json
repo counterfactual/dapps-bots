@@ -23,11 +23,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/counterfactual/monorepo"
+    "url": "git+https://github.com/counterfactual/dapps-bots"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/counterfactual/monorepo"
+    "url": "https://github.com/counterfactual/dapps-bots/issues"
   },
   "homepage": "https://counterfactual.com",
   "devDependencies": {

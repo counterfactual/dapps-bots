@@ -44,9 +44,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/counterfactual/monorepo.git"
+    "url": "git+https://github.com/counterfactual/dapps-bots.git"
   },
   "bugs": {
-    "url": "https://github.com/counterfactual/monorepo/issues"
+    "url": "https://github.com/counterfactual/dapps-bots/issues"
   }
 }
