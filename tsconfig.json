@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": false,
+    "allowUnreachableCode": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
@@ -9,8 +10,8 @@
     "noImplicitReturns": true,
     "noLib": false,
     "removeComments": true,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -22,9 +23,9 @@
     "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types",
+      "./node_modules/@counterfacutal/types",
       "./node_modules/@counterfactual/typescript-typings/types"
-    ],
-    // @types/mocha has a duplicate conflict, this is the suggested temp fix.
+    ], // @types/mocha has a duplicate conflict, this is the suggested temp fix.
     "skipLibCheck": true,
     "strict": true
   }
