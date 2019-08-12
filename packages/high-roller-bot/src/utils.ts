@@ -17,13 +17,13 @@ export async function getFreeBalance(
   node: Node,
   multisigAddress: string
 ): Promise<NodeTypes.GetFreeBalanceStateResult> {
-  const query = {
-    type: NodeTypes.MethodName.GET_FREE_BALANCE_STATE,
-    requestId: generateUUID(),
-    params: { multisigAddress } as NodeTypes.GetFreeBalanceStateParams
+  const rpc = {
+    methodName: NodeTypes.RpcMethodName.GET_FREE_BALANCE_STATE,
+    id: generateUUID(),
+    parameters: { multisigAddress } as NodeTypes.GetFreeBalanceStateParams
   };
 
-  const { result } = await node.call(query.type, query);
+  const { result } = await node.rpcRouter.dispatch(rpc);
 
   return result as NodeTypes.GetFreeBalanceStateResult;
 }
@@ -73,10 +73,10 @@ export async function deposit(
 
   console.log(`\nDepositing ${amount} ETH into ${multisigAddress}\n`);
   try {
-    await node.call(NodeTypes.MethodName.DEPOSIT, {
-      type: NodeTypes.MethodName.DEPOSIT,
-      requestId: generateUUID(),
-      params: {
+    await node.rpcRouter.dispatch({
+      methodName: NodeTypes.MethodName.DEPOSIT,
+      id: generateUUID(),
+      parameters: {
         multisigAddress,
         amount: parseEther(amount)
       } as NodeTypes.DepositParams
