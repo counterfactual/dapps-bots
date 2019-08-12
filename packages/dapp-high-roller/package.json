@@ -17,17 +17,18 @@
   },
   "dependencies": {
     "@counterfactual/cf.js": "0.2.3",
-    "@counterfactual/types": "0.0.30",
+    "@counterfactual/types": "^0.0.33",
+    "@counterfactual/typescript-typings": "^0.1.0",
     "@stencil/core": "0.18.1-0",
     "@stencil/router": "0.3.3"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/counterfactual/monorepo"
+    "url": "git+https://github.com/counterfactual/dapps-bots"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/counterfactual/monorepo"
+    "url": "https://github.com/counterfactual/dapps-bots/issues"
   },
   "homepage": "https://counterfactual.com",
   "devDependencies": {
