@@ -23,7 +23,7 @@
     "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@counterfacutal/types",
+      "./node_modules/@counterfactual/types",
       "./node_modules/@counterfactual/typescript-typings/types"
     ], // @types/mocha has a duplicate conflict, this is the suggested temp fix.
     "skipLibCheck": true,
