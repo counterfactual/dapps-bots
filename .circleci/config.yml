@@ -41,7 +41,7 @@ jobs:
           name: "yarn --frozen-lockfile"
           command: yarn --frozen-lockfile
 
-      - run: yarn build:ci
+      - run: yarn build
 
       - <<: *save_dep
 
@@ -50,35 +50,6 @@ jobs:
           paths:
             - packages/*/dist
             - packages/*/build
-
-  run-tests:
-    docker:
-      - image: circleci/node:10.15.3
-        environment:
-          POSTGRES_HOST: 127.0.0.1
-          POSTGRES_USER: postgres
-          POSTGRES_DATABASE: postgres
-          POSTGRES_PORT: 5432
-
-      - image: circleci/postgres:9.6.14-alpine
-        environment:
-          POSTGRES_USER: postgres
-
-    steps:
-      - <<: *restore_code
-      - checkout
-
-      - <<: *restore_dep
-      - run: sudo npm i -g yarn@1.12.3 # because docker image uses 1.13.0
-
-      - run: yarn --frozen-lockfile # symlink packages' node_modules
-
-      - attach_workspace:
-          at: /home/circleci/project
-
-      - run:
-          name: Run Non-Playground-related tests
-          command: yarn test:ci
 
   run-tslint:
     <<: *defaults
@@ -136,15 +107,11 @@ jobs:
           command: yarn run publish
 
 workflows:
-  run-tests:
+  counterfactual-dapps:
     jobs:
       - build
 
       - run-tslint:
-          requires:
-            - build
-
-      - run-tests:
           requires:
             - build
 
@@ -156,16 +123,7 @@ workflows:
           requires:
             - build
             - ensure-updated-lockfiles
-            - run-tests
             - run-tslint
-          filters:
-            branches:
-              only: master
-
-      - heroku/deploy-via-git:
-          app-name: simple-hub-server-staging
-          requires:
-            - publish-to-npm
           filters:
             branches:
               only: master
