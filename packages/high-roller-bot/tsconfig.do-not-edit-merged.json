@@ -7,7 +7,9 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "declarationMap": false,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -27,6 +29,10 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "target": "es2017",
-    "typeRoots": ["./node_modules/@counterfactual/typescript-typings/types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@counterfactual/types",
+      "./node_modules/@counterfactual/typescript-typings/types"
+    ]
   }
 }

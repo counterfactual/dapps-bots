@@ -6,7 +6,6 @@ import {
 } from "@counterfactual/node";
 import { Node as NodeTypes } from "@counterfactual/types";
 import { solidityKeccak256 } from "ethers/utils";
-
 import { getFreeBalance, logEthFreeBalance } from "./utils";
 
 // Keep in sync with high-roller-app.spec.ts
@@ -65,23 +64,15 @@ function respond(
       actionHash: hash
     };
 
-    // const request = {
-    //   params: {
-    //     appInstanceId,
-    //     action: commitHashAction
-    //   } as NodeTypes.TakeActionParams,
-    //   requestId: generateUUID(),
-    //   type: NodeTypes.MethodName.TAKE_ACTION
-    // };
-    // node.call(request.type, request);
-    node.rpcRouter.dispatch({
-      methodName: NodeTypes.RpcMethodName.TAKE_ACTION,
-      id: Date.now(),
+    const request = {
       parameters: {
         appInstanceId,
         action: commitHashAction
-      }
-    });
+      } as NodeTypes.TakeActionParams,
+      id: Date.now(),
+      methodName: NodeTypes.RpcMethodName.TAKE_ACTION
+    };
+    node.rpcRouter.dispatch(request);
   }
 }
 

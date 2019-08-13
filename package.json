@@ -14,11 +14,10 @@
     "test": "lerna run --stream --concurrency 1 test",
     "lint": "lerna run lint --parallel --no-bail",
     "lint:fix": "lerna run lint:fix --parallel --no-bail",
-    "run:playground": "lerna run start --parallel --scope=**/playground --scope=**/dapp-high-roller --scope=**/dapp-tic-tac-toe",
-    "run:dapps": "lerna run start --parallel --scope=**/dapp-high-roller --scope=**/dapp-tic-tac-toe",
-    "run:bots": "lerna run start --parallel --scope=**/high-roller-bot --scope=**/tic-tac-toe-bot",
-    "publish": "lerna publish --yes from-package patch",
-    "postinstall": "patch-package"
+    "start": "lerna run start --parallel --ignore=**/playground",
+    "start:dapps": "lerna run start --parallel --scope=**/dapp-high-roller --scope=**/dapp-tic-tac-toe",
+    "start:bots": "lerna run start --parallel --scope=**/high-roller-bot --scope=**/tic-tac-toe-bot",
+    "publish": "lerna publish --yes from-package patch"
   },
   "keywords": [
     "ethereum",

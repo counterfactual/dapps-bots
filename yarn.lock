@@ -850,7 +850,7 @@
     eventemitter3 "^4.0.0"
     rpc-server "0.0.1"
 
-"@counterfactual/cf.js@0.2.4":
+"@counterfactual/cf.js@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@counterfactual/cf.js/-/cf.js-0.2.4.tgz#4f4e02ed4c054f13b0bd376c298c4abd964fdf91"
   integrity sha512-ciJKK5if+tx2MHms0eiw3TuIs4QgPqV6TRr4cvGlZaebAtJt2xi8jiOG5xC0DobU5zW/PYRNgBoQeMZSCDan5g==
@@ -909,24 +909,6 @@
     typescript-memoize "^1.0.0-alpha.3"
     uuid "^3.3.2"
 
-"@counterfactual/node@^0.2.42":
-  version "0.2.42"
-  resolved "https://registry.yarnpkg.com/@counterfactual/node/-/node-0.2.42.tgz#ebd22e597c55493efe668590edbf2deefeafff7b"
-  integrity sha512-IUlWIOYiotFPuk52ITx9fvWzOtEdKoPpI+zTDwoTRDkM1WT3tuqps+kezjD0/PZu6OwJaVKpIBv1v11uDV0Bgw==
-  dependencies:
-    "@counterfactual/cf-adjudicator-contracts" "0.0.1"
-    "@counterfactual/cf-funding-protocol-contracts" "0.0.1"
-    "@counterfactual/cf.js" "0.2.3"
-    "@counterfactual/firebase-client" "0.0.3"
-    "@counterfactual/types" "0.0.32"
-    ethers "4.0.33"
-    eventemitter3 "^4.0.0"
-    loglevel "^1.6.1"
-    p-queue "^5.0.0"
-    rpc-server "0.0.1"
-    typescript-memoize "^1.0.0-alpha.3"
-    uuid "^3.3.2"
-
 "@counterfactual/types@0.0.25":
   version "0.0.25"
   resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.25.tgz#017d4bbb7e226598f5cec3b54973cfe6f403e47f"
@@ -942,12 +924,12 @@
   resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.31.tgz#17006781ea79c7ed27fdfe5e9c3e713da292d8d3"
   integrity sha512-Jqv1tfXY9mEzi6mzjL5OKzPPVvaKEKqGvqSgQBtqzM98Mf+igcoVx7S9Sg1ioHLhJcC+j1ETfU06DefckUVD6g==
 
-"@counterfactual/types@0.0.32", "@counterfactual/types@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.32.tgz#1696f1f6dc6c2e8f024f8cc83783e6f0e4a28710"
-  integrity sha512-0aUnC4rmSAu41Ig91mMeVzy/P3QTmcOKNR9DSDJkoqG5R0Up/qJf8G8IgPBeZN0YyT/81j+5ccYBWp+h9UBHCQ==
+"@counterfactual/types@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.33.tgz#11b2f9534b5f9e1f23cee3dc197269f78bf51141"
+  integrity sha512-mwgaB43c8dsgrd5M4E/hOtFC81VDX7jEQnVKEXLUne0TAoU8VoiTTjw70se5Vm9R0ARUc42udtjaOG3FXUnOag==
 
-"@counterfactual/typescript-typings@0.1.0":
+"@counterfactual/typescript-typings@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@counterfactual/typescript-typings/-/typescript-typings-0.1.0.tgz#96ffb1f091f6d24831495596c406c93d0e1ee87c"
   integrity sha512-wunUnkcNQvmlKE88FVedkdlosFSLBlx6ozL25pqEW33dAl29fKr825/Z5c+a90NTMGrczqkrwW7JPoqCQzQhag==
@@ -15319,10 +15301,10 @@ tslint-eslint-rules@^5.4.0:
     tslib "1.9.0"
     tsutils "^3.0.0"
 
-tslint-microsoft-contrib@~5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-5.2.1.tgz#a6286839f800e2591d041ea2800c77487844ad81"
-  integrity sha512-PDYjvpo0gN9IfMULwKk0KpVOPMhU6cNoT9VwCOLeDl/QS8v8W2yspRpFFuUS7/c5EIH/n8ApMi8TxJAz1tfFUA==
+tslint-microsoft-contrib@^6.0.0, tslint-microsoft-contrib@~5.2.1:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-6.2.0.tgz#8aa0f40584d066d05e6a5e7988da5163b85f2ad4"
+  integrity sha512-6tfi/2tHqV/3CL77pULBcK+foty11Rr0idRDxKnteTaKm6gWF9qmaCNU17HVssOuwlYNyOmd9Jsmjd+1t3a3qw==
   dependencies:
     tsutils "^2.27.2 <2.29.0"
 
