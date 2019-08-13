@@ -102,15 +102,15 @@ function respond(
   if (noWinnerYet && isBotTurn) {
     const action = takeTurn(board, botPlayerNumber);
     const request = {
-      params: {
+      parameters: {
         appInstanceId,
         action
       },
-      requestId: generateUUID(),
-      type: NodeTypes.MethodName.TAKE_ACTION
+      id: generateUUID(),
+      methodName: NodeTypes.MethodName.TAKE_ACTION
     };
 
-    node.call(request.type, request);
+    node.rpcRouter.dispatch(request);
   }
 }
 
@@ -176,16 +176,16 @@ export async function connectNode(
     const intermediaries = data.data.params.intermediaries;
 
     const request = {
-      type: NodeTypes.MethodName.INSTALL_VIRTUAL,
-      params: {
+      methodName: NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
+      parameters: {
         appInstanceId,
         intermediaries
       },
-      requestId: generateUUID()
+      id: generateUUID()
     };
 
     try {
-      await node.call(request.type, request);
+      await node.rpcRouter.dispatch(request);
       node.on(NodeTypes.EventName.UPDATE_STATE, async updateEventData => {
         if (updateEventData.data.appInstanceId === appInstanceId) {
           respond(node, botPublicIdentifier, updateEventData);

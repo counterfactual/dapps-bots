@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "dom", "esnext.asynciterable"],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noImplicitReturns": true,
