@@ -1,5 +1,5 @@
-import KovanContracts from "@counterfactual/apps/networks/42.json";
 import RopstenContracts from "@counterfactual/apps/networks/3.json";
+import KovanContracts from "@counterfactual/apps/networks/42.json";
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "./assets/images/logo.svg";
 import Waiting from "./Waiting";
@@ -50,20 +50,25 @@ class Wager extends Component {
     return new Promise(resolve => {
       const onMatchmakeResponse = event => {
         if (
-          !event.data.toString().startsWith("playground:response:matchmake")
+          event.data.data &&
+          event.data.data.message &&
+          event.data.data.message.startsWith("playground:response:matchmake")
         ) {
-          return;
+          window.removeEventListener("message", onMatchmakeResponse);
+
+          resolve(event.data.data);
         }
-
-        window.removeEventListener("message", onMatchmakeResponse);
-
-        const [, data] = event.data.split("|");
-        resolve(JSON.parse(data));
       };
 
       window.addEventListener("message", onMatchmakeResponse);
 
-      window.parent.postMessage("playground:request:matchmake", "*");
+      window.postMessage(
+        {
+          type: "PLUGIN_MESSAGE",
+          data: { message: "playground:request:matchmake" }
+        },
+        "*"
+      );
     });
   }
 
@@ -111,9 +116,7 @@ class Wager extends Component {
 
     if (currentEthBalance.lt(bet)) {
       this.setState({
-        error: `Insufficient funds: You need at least ${
-          this.props.gameInfo.betAmount
-        } ETH to play.`
+        error: `Insufficient funds: You need at least ${this.props.gameInfo.betAmount} ETH to play.`
       });
       return;
     }

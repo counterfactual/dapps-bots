@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-import Welcome from "./Welcome";
-import Wager from "./Wager";
-import Waiting from "./Waiting";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Game from "./Game";
 import RouterListener from "./RouterListener";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MockNodeProvider from "./MockNodeProvider";
+import Wager from "./Wager";
+import Waiting from "./Waiting";
+import Welcome from "./Welcome";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     const params = new URLSearchParams(window.location.search);
-    const nodeProvider = params.get("standalone")
-      ? new MockNodeProvider()
-      : new window.cf.NodeProvider();
+    const nodeProvider = new window.cf.NodeProviderEthereum();
     const cfProvider = new window.cf.Provider(nodeProvider);
     const gameInfo = {
       myName: params.get("myName") || "You",
@@ -31,10 +28,11 @@ export default class App extends Component {
     };
 
     this.connect().then(() => {
+      console.log("Connected");
       this.requestUserData();
       this.waitForCounterpartyAppInstance(props);
 
-      window.parent.postMessage("playground:request:appInstance", "*");
+      window.postMessage("playground:request:appInstance", "*");
     });
   }
 
@@ -51,11 +49,11 @@ export default class App extends Component {
   requestUserData() {
     window.addEventListener("message", event => {
       if (
-        typeof event.data === "string" &&
-        event.data.startsWith("playground:response:user")
+        event.data.data &&
+        typeof event.data.data.message === "string" &&
+        event.data.data.message.startsWith("playground:response:user")
       ) {
-        const [, data] = event.data.split("|");
-        const playgroundState = JSON.parse(data);
+        const playgroundState = event.data.data.data;
         this.setState({
           user: playgroundState.user,
           balance: playgroundState.balance,
@@ -67,7 +65,13 @@ export default class App extends Component {
       }
     });
 
-    window.parent.postMessage("playground:request:user", "*");
+    window.postMessage(
+      {
+        type: "PLUGIN_MESSAGE",
+        data: { message: "playground:request:user" }
+      },
+      "*"
+    );
   }
 
   waitForCounterpartyAppInstance(props) {
