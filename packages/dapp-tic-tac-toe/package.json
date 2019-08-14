@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@counterfactual/apps": "0.1.5",
-    "@counterfactual/cf.js": "0.2.3",
+    "@counterfactual/cf.js": "0.2.4",
     "@counterfactual/types": "^0.0.33",
     "@counterfactual/typescript-typings": "^0.1.0",
     "ethers": "^4.0.33",

@@ -33,15 +33,15 @@
     "url": "https://github.com/counterfactual/dapps-bots/issues"
   },
   "dependencies": {
-    "@counterfactual/dapp-tic-tac-toe": "0.1.2",
-    "@counterfactual/firebase-client": "0.0.3",
-    "@counterfactual/node": "0.2.40",
-    "@counterfactual/types": "^0.0.33",
-    "@counterfactual/typescript-typings": "^0.1.0",
+    "@counterfactual/dapp-tic-tac-toe": "*",
+    "@counterfactual/firebase-client": "*",
+    "@counterfactual/node": "*",
+    "@counterfactual/types": "*",
+    "@counterfactual/typescript-typings": "*",
     "eventemitter3": "^4.0.0"
   },
   "devDependencies": {
-    "@counterfactual/firebase-server": "0.0.1",
+    "@counterfactual/firebase-server": "*",
     "env-cmd": "9.0.3",
     "ethers": "4.0.33",
     "jest": "24.8.0",
