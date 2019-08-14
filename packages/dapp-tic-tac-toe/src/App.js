@@ -1,3 +1,4 @@
+import { bigNumberify, computeAddress, HDNode } from "ethers/utils";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Game from "./Game";
@@ -6,6 +7,15 @@ import Wager from "./Wager";
 import Waiting from "./Waiting";
 import Welcome from "./Welcome";
 
+const { fromExtendedKey } = HDNode;
+
+function xkeyKthAddress(xkey, k) {
+  return computeAddress(xkeyKthHDNode(xkey, k).publicKey);
+}
+
+function xkeyKthHDNode(xkey, k) {
+  return fromExtendedKey(xkey).derivePath(`${k}`);
+}
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -27,12 +37,9 @@ export default class App extends Component {
       redirectTo: null
     };
 
-    this.connect().then(() => {
-      console.log("Connected");
-      this.requestUserData();
+    this.connect().then(async () => {
+      await this.requestUserData();
       this.waitForCounterpartyAppInstance(props);
-
-      window.postMessage("playground:request:appInstance", "*");
     });
   }
 
@@ -46,51 +53,42 @@ export default class App extends Component {
     });
   }
 
-  requestUserData() {
-    window.addEventListener("message", event => {
-      if (
-        event.data.data &&
-        typeof event.data.data.message === "string" &&
-        event.data.data.message.startsWith("playground:response:user")
-      ) {
-        const playgroundState = event.data.data.data;
-        this.setState({
-          user: playgroundState.user,
-          balance: playgroundState.balance,
-          matchmakeWith: playgroundState.matchmakeWith,
-          connected: true
-        });
-
-        window.ga("set", "userId", playgroundState.user.id);
-      }
-    });
-
-    window.postMessage(
-      {
-        type: "PLUGIN_MESSAGE",
-        data: { message: "playground:request:user" }
-      },
-      "*"
+  async requestUserData() {
+    const userResult = await window.ethereum.send(
+      "counterfactual:request:user"
     );
+    const account = userResult.result;
+    const balancesResult = await window.ethereum.send(
+      "counterfactual:request:balances",
+      [account.multisigAddress]
+    );
+    const freeBalance = balancesResult.result;
+    const freeBalanceAddress = xkeyKthAddress(account.nodeAddress, 0);
+    const myBalance = bigNumberify(freeBalance[freeBalanceAddress]);
+    this.setState({
+      user: account,
+      balance: myBalance,
+      connected: true
+    });
   }
 
   waitForCounterpartyAppInstance(props) {
-    window.addEventListener("message", event => {
-      if (
-        typeof event.data === "string" &&
-        event.data.startsWith("playground:response:appInstance")
-      ) {
-        const [, data] = event.data.split("|");
-
-        if (data) {
-          const { appInstance } = JSON.parse(data);
-          this.appInstanceChanged(appInstance);
-          this.setState({
-            redirectTo: `/game?appInstanceId=${appInstance.id}`
-          });
-        }
-      }
-    });
+    // TODO: Bring back resumable games.
+    // window.addEventListener("message", event => {
+    //   if (
+    //     typeof event.data === "string" &&
+    //     event.data.startsWith("playground:response:appInstance")
+    //   ) {
+    //     const [, data] = event.data.split("|");
+    //     if (data) {
+    //       const { appInstance } = JSON.parse(data);
+    //       this.appInstanceChanged(appInstance);
+    //       this.setState({
+    //         redirectTo: `/game?appInstanceId=${appInstance.id}`
+    //       });
+    //     }
+    //   }
+    // });
   }
 
   render() {

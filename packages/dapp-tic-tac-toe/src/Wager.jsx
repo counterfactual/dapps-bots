@@ -21,22 +21,28 @@ class Wager extends Component {
     this.props.cfProvider.on("installVirtual", this.onInstall.bind(this));
 
     try {
-      const result = await this.matchmake();
+      const matchmakeWithRequest = await window.ethereum.send(
+        "counterfactual:request:matchmake"
+      );
 
+      const {
+        username,
+        ethAddress,
+        nodeAddress,
+        intermediary
+      } = matchmakeWithRequest.result.attributes;
       const opponent = {
         id: "opponent",
-        attributes: {
-          username: result.data.attributes.username,
-          nodeAddress: result.data.attributes.nodeAddress,
-          ethAddress: result.data.attributes.ethAddress
-        }
+        username,
+        ethAddress,
+        nodeAddress
       };
 
       this.setState({
         isLoaded: true,
-        opponent: { id: opponent.id, ...opponent.attributes },
-        intermediary: result.data.attributes.intermediary,
-        error: result.error
+        opponent,
+        intermediary,
+        error: matchmakeWithRequest.result.error
       });
     } catch (error) {
       this.setState({
@@ -109,7 +115,9 @@ class Wager extends Component {
   async proposeInstall(user, opponent, intermediary) {
     const appFactory = this.createAppFactory();
 
-    const currentEthBalance = window.ethers.utils.parseEther(
+    debugger;
+
+    const currentEthBalance = window.ethers.utils.bigNumberify(
       this.props.balance
     );
     const bet = window.ethers.utils.parseEther(this.props.gameInfo.betAmount);
