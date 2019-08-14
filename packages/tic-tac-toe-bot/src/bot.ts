@@ -184,6 +184,8 @@ export async function connectNode(
       id: generateUUID()
     };
 
+    console.log("Attempting to call", request);
+
     try {
       await node.rpcRouter.dispatch(request);
       node.on(NodeTypes.EventName.UPDATE_STATE, async updateEventData => {

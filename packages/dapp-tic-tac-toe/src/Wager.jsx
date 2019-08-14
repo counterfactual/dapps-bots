@@ -1,5 +1,6 @@
 import RopstenContracts from "@counterfactual/apps/networks/3.json";
 import KovanContracts from "@counterfactual/apps/networks/42.json";
+import { AddressZero } from "ethers/constants";
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "./assets/images/logo.svg";
 import Waiting from "./Waiting";
@@ -143,9 +144,11 @@ class Wager extends Component {
         responderDeposit: window.ethers.utils.parseEther(
           this.props.gameInfo.betAmount
         ),
+        initiatorDepositTokenAddress: AddressZero,
         initiatorDeposit: window.ethers.utils.parseEther(
           this.props.gameInfo.betAmount
         ),
+        responderDepositTokenAddress: AddressZero,
         timeout: 172800,
         initialState: {
           versionNumber: 0,
