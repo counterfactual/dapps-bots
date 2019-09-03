@@ -82,21 +82,21 @@ export default class CounterfactualNode {
 
   static async setupNodeProvider() {
     this.node.on(
-      NodeTypes.MethodName.PROPOSE_INSTALL_VIRTUAL,
+      NodeTypes.RpcMethodName.PROPOSE_INSTALL_VIRTUAL,
       this.postToPort.bind(this)
     );
     this.node.on(
-      NodeTypes.MethodName.INSTALL_VIRTUAL,
+      NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
       this.postToPort.bind(this)
     );
     this.node.on(
-      NodeTypes.MethodName.REJECT_INSTALL,
+      NodeTypes.RpcMethodName.REJECT_INSTALL,
       this.postToPort.bind(this)
     );
-    this.node.on(NodeTypes.MethodName.DEPOSIT, this.postToPort.bind(this));
-    this.node.on(NodeTypes.MethodName.WITHDRAW, this.postToPort.bind(this));
+    this.node.on(NodeTypes.RpcMethodName.DEPOSIT, this.postToPort.bind(this));
+    this.node.on(NodeTypes.RpcMethodName.WITHDRAW, this.postToPort.bind(this));
     this.node.on(
-      NodeTypes.MethodName.GET_FREE_BALANCE_STATE,
+      NodeTypes.RpcMethodName.GET_FREE_BALANCE_STATE,
       this.postToPort.bind(this)
     );
     this.node.on(
