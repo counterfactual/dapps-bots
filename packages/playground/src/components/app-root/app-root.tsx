@@ -198,12 +198,12 @@ export class AppRoot {
       },
       async set(
         pairs: {
-          key: string;
+          path: string;
           value: any;
         }[]
       ): Promise<void> {
-        pairs.forEach(({ key, value }) => {
-          window.localStorage.setItem(key, JSON.stringify(value) as string);
+        pairs.forEach(({ path, value }) => {
+          window.localStorage.setItem(path, JSON.stringify(value) as string);
         });
       }
     };
