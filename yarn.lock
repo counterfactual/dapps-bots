@@ -824,36 +824,36 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@counterfactual/apps@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@counterfactual/apps/-/apps-0.1.5.tgz#fe88409518c5a2a258a4d77177eb4df8b1972851"
-  integrity sha512-vh372wOK758WGSDCuIydB5xjbE5aVTlc0kdjsUMnmdKV5GkSzIK6o/VrNRhDFOy9JVuYaKZnkvz/XYX1u/V9+w==
+"@counterfactual/apps@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.npmjs.org/@counterfactual/apps/-/apps-0.1.9.tgz#1d97db0c83b9b53698ec42e9ea03b114b19ffa65"
+  integrity sha512-m2km0IoP+uNd70WZc/tDt6O84hvevmdaWxEN+2e+7RX6Uphzh5kJ5wLD0bLygB/shX3ptCcR40w6g7xVP5vt1w==
 
-"@counterfactual/cf-adjudicator-contracts@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@counterfactual/cf-adjudicator-contracts/-/cf-adjudicator-contracts-0.0.1.tgz#c15e945da8d70f0e156b5f380ec1aeb03b71792d"
-  integrity sha512-oWIAumTPeHRIvjlux5yAjlb/OK6ZHWHPcAXSorp087tgqt6WaQYO3Ukif0fJPRvMdzQ58twmitKFNMHjZfYiGg==
+"@counterfactual/cf-adjudicator-contracts@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/@counterfactual/cf-adjudicator-contracts/-/cf-adjudicator-contracts-0.0.4.tgz#962a829767d64a34925be7e728052ad9a482a391"
+  integrity sha512-ef+BneMaUmCfX1xyDNp8YsUnN/npOKEdCuDSwFhUwzStesfH8KiMxnnoNCJbGydsCy+CoSCVGKRM47rCkaJm2Q==
 
-"@counterfactual/cf-funding-protocol-contracts@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@counterfactual/cf-funding-protocol-contracts/-/cf-funding-protocol-contracts-0.0.1.tgz#d9678414f88e8e35bfc541c797cbf383c0611290"
-  integrity sha512-qXrjYIBmmlhNwVHLHZWTsURvLjtU4zbasWoeoNxrWDMFBGgTq6SSk28E91e0zE0lcxnjeehT9UBWk7QzttZGTw==
+"@counterfactual/cf-funding-protocol-contracts@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/@counterfactual/cf-funding-protocol-contracts/-/cf-funding-protocol-contracts-0.0.7.tgz#0801ce16d11994fdad23a0ae36f6dfbf021fb06e"
+  integrity sha512-uexelPQzu8sLCY5Ceq6tfq8D1yiUt9gfRTC9iZJ6HqggU/l1igEy58Xx3LD2IIxgAJF6xA+bI4RIfhL2Fd+bjA==
 
-"@counterfactual/cf.js@0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@counterfactual/cf.js/-/cf.js-0.2.3.tgz#7ed93e4376709ca17c635d211b0e87d0e0c9e05a"
-  integrity sha512-1rHbIc4tq1KpE/8bO2KXpU9JZ5hflt84kaln4kB9tCoRpJiisJrMALR0CQ7t/5kIpgnicVQQqhOYKw6uoTHcEQ==
+"@counterfactual/cf.js@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/@counterfactual/cf.js/-/cf.js-0.2.6.tgz#c9a940a7172521d9f6495277bfe62f84049c3bb4"
+  integrity sha512-bS58966bbDSSfW2Eppo/r94FFdlChRwj9mgZRu9HAR3HvBh3hPSzUIhhGbWhXyY9TA4B4aQBPDmI558rXiYkBA==
   dependencies:
-    "@counterfactual/node-provider" "0.1.2"
-    "@counterfactual/types" "0.0.25"
-    ethers "4.0.33"
+    "@counterfactual/node-provider" "0.2.2"
+    "@counterfactual/types" "0.0.38"
+    ethers "4.0.36"
     eventemitter3 "^4.0.0"
     rpc-server "0.0.1"
 
-"@counterfactual/firebase-client@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@counterfactual/firebase-client/-/firebase-client-0.0.3.tgz#ae699f107768b1e4054f6fb08a7e7d3c733b6679"
-  integrity sha512-tKq9gRcdHcfCb0p6/A0bop9LC5j8GbvrYlKKdLKwCVHNrNpAscTb5ORf5zsJMoJpZpSKFDWENFveBavphjoSlw==
+"@counterfactual/firebase-client@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/@counterfactual/firebase-client/-/firebase-client-0.0.6.tgz#70013c01df1b2aa3eb6c98f37c2f6daeb478c65d"
+  integrity sha512-9XBY9osaFEKk67UhiIMEpEqOYwYjSD/sk+ICFkBDyXxqv1BGDSQ0FW7JEzs4TPH5vyvU4ETTBYn9kSAdNfCjlw==
   dependencies:
     firebase "6.0.2"
 
@@ -866,24 +866,24 @@
     firebase "6.0.2"
     firebase-server "1.0.2"
 
-"@counterfactual/node-provider@0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@counterfactual/node-provider/-/node-provider-0.1.2.tgz#423fa7c516a32e36e56143a9e6b4f9aa05194733"
-  integrity sha512-7DrRocC9etadQq1hXNuLZr0FqEWuWcYrT3EtfnJWUkgHbk8C4/liOo2DS5pR0rYxZhh5SH6kn5QyX08W6Oackw==
+"@counterfactual/node-provider@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/@counterfactual/node-provider/-/node-provider-0.2.2.tgz#f91cb0f7e8696c255cce3fbcc6a1057021643556"
+  integrity sha512-yvNj5f0PDa2WhABFpAiI5rXuYkNookvk8V5UmgtRedS3tdFNW1GPvT3sFGvmSqkOQwpbQBuorOhy7e3q9Hz82w==
   dependencies:
-    eventemitter3 "^3.1.0"
+    eventemitter3 "^4.0.0"
 
-"@counterfactual/node@0.2.40":
-  version "0.2.40"
-  resolved "https://registry.yarnpkg.com/@counterfactual/node/-/node-0.2.40.tgz#51b3db475b70845916964b3a1b474a5cc4c13fd9"
-  integrity sha512-nsVWUeKxdQTA19/wDRIhDdRNWG9dBpyQNQUiMfYy3WGM/julec6mY0LJO9ILtXq3wdl+DxmCdCyKyc4gvrzrIA==
+"@counterfactual/node@0.2.66":
+  version "0.2.66"
+  resolved "https://registry.npmjs.org/@counterfactual/node/-/node-0.2.66.tgz#1694d75edcaffb7bc0fd827358bfbac67548cb03"
+  integrity sha512-VJ5VxVKJoMMvfN9AMuMLu79mExMCtYmStkr579KQnFmE64GisukLUz7pE5I86gMBAJ5HCQHOsRuZht/yKus2WA==
   dependencies:
-    "@counterfactual/cf-adjudicator-contracts" "0.0.1"
-    "@counterfactual/cf-funding-protocol-contracts" "0.0.1"
-    "@counterfactual/cf.js" "0.2.3"
-    "@counterfactual/firebase-client" "0.0.3"
-    "@counterfactual/types" "0.0.30"
-    ethers "4.0.33"
+    "@counterfactual/cf-adjudicator-contracts" "0.0.4"
+    "@counterfactual/cf-funding-protocol-contracts" "0.0.7"
+    "@counterfactual/cf.js" "0.2.6"
+    "@counterfactual/firebase-client" "0.0.6"
+    "@counterfactual/types" "0.0.38"
+    ethers "4.0.36"
     eventemitter3 "^4.0.0"
     loglevel "^1.6.1"
     p-queue "^5.0.0"
@@ -891,28 +891,18 @@
     typescript-memoize "^1.0.0-alpha.3"
     uuid "^3.3.2"
 
-"@counterfactual/types@0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.25.tgz#017d4bbb7e226598f5cec3b54973cfe6f403e47f"
-  integrity sha512-TnOtQvpIXweqISg81Z6LyUJf9IlgI7PST5if/gl776NJAiaAGevx+27lG2YmUxX5fheecNLddc1+3WDJy87WrA==
+"@counterfactual/types@0.0.38":
+  version "0.0.38"
+  resolved "https://registry.npmjs.org/@counterfactual/types/-/types-0.0.38.tgz#f4514d533f3aaf28cb7916c4e1a5561ef4107945"
+  integrity sha512-0w8zrj8Yv8pG6ndBmc5PvWCwvBnQYLOKJbDQJWyZ9AUhnJ2vBQNeBbNR5OYxSRmJHdrdGyFfhVOasyE8ES2W4w==
 
-"@counterfactual/types@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.30.tgz#ce758e65105887474afe423c2d7be138aacd67fa"
-  integrity sha512-/xAz+v+opyYPUdLVQOak3tk04WpgYF8ZP7atTT5NgAXLcKkvw2QwJvOSHsbIDYXnpzfZopCUPtFoQYD7bYkH8A==
-
-"@counterfactual/types@^0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@counterfactual/types/-/types-0.0.33.tgz#11b2f9534b5f9e1f23cee3dc197269f78bf51141"
-  integrity sha512-mwgaB43c8dsgrd5M4E/hOtFC81VDX7jEQnVKEXLUne0TAoU8VoiTTjw70se5Vm9R0ARUc42udtjaOG3FXUnOag==
-
-"@counterfactual/typescript-typings@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@counterfactual/typescript-typings/-/typescript-typings-0.1.0.tgz#96ffb1f091f6d24831495596c406c93d0e1ee87c"
-  integrity sha512-wunUnkcNQvmlKE88FVedkdlosFSLBlx6ozL25pqEW33dAl29fKr825/Z5c+a90NTMGrczqkrwW7JPoqCQzQhag==
+"@counterfactual/typescript-typings@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/@counterfactual/typescript-typings/-/typescript-typings-0.1.2.tgz#90982e09f73dd344ca076b0a139c77deb9e5c34d"
+  integrity sha512-vzv7LkLcdLpU0kDYUyZezlnnBNNWNwFYtN87A4K5U5PW1GH4dn64ipf7NMia4LoFuD6INHXl6ARwwF53JlRNwQ==
   dependencies:
-    "@types/node" "^11.9.0"
-    truffle-contract "^4.0.1"
+    "@types/node" "12.7.2"
+    truffle-contract "4.0.30"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -2558,15 +2548,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
   integrity sha512-aK9jxMypeSrhiYofWWBf/T7O+KwaiAHzM4sveCdWPn71lzUSMimRnKzhXDKfKwV1kWoBo2P1aGgaIYGLf9/ljw==
 
+"@types/node@12.7.2":
+  version "12.7.2"
+  resolved "https://registry.npmjs.org/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
+  integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
+
 "@types/node@^10.1.0", "@types/node@^10.3.2":
   version "10.14.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.15.tgz#e8f7729b631be1b02ae130ff0b61f3e018000640"
   integrity sha512-CBR5avlLcu0YCILJiDIXeU2pTw7UK/NIxfC63m7d7CVamho1qDEzXKkOtEauQRPMy6MI8mLozth+JJkas7HY6g==
-
-"@types/node@^11.9.0":
-  version "11.13.19"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.19.tgz#c7bd7009aa850464775d8a814e18138d633cd676"
-  integrity sha512-tLRDU1hmcWamtgRT2iVRdraAQVGFQGgtcqracSo9XyMN1VeZLSVGb8RJJxVqab7UGbijoUijGPVFMjmqzyZIUw==
 
 "@types/node@^9.3.0":
   version "9.6.50"
@@ -6273,6 +6263,22 @@ ethers@4.0.33, ethers@^4.0.0-beta.1, ethers@^4.0.32:
   version "4.0.33"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.33.tgz#f7b88d2419d731a39aefc37843a3f293e396f918"
   integrity sha512-lAHkSPzBe0Vj+JrhmkEHLtUEKEheVktIjGDyE9gbzF4zf1vibjYgB57LraDHu4/ItqWVkztgsm8GWqcDMN+6vQ==
+  dependencies:
+    "@types/node" "^10.3.2"
+    aes-js "3.0.0"
+    bn.js "^4.4.0"
+    elliptic "6.3.3"
+    hash.js "1.1.3"
+    js-sha3 "0.5.7"
+    scrypt-js "2.0.4"
+    setimmediate "1.0.4"
+    uuid "2.0.1"
+    xmlhttprequest "1.8.0"
+
+ethers@4.0.36:
+  version "4.0.36"
+  resolved "https://registry.npmjs.org/ethers/-/ethers-4.0.36.tgz#96519fd3cc9317f938c8ee4d22050f34e3c2ef0e"
+  integrity sha512-rWdchEhUyXx01GiwexH6Sha97CQ9tJdQwe6FtYKxShC7VEZV41nuKt+lzCQ4OqvQwZK5PcAKaAZv2GDsCH33SA==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
@@ -15175,26 +15181,26 @@ truffle-blockchain-utils@^0.0.10:
   resolved "https://registry.yarnpkg.com/truffle-blockchain-utils/-/truffle-blockchain-utils-0.0.10.tgz#18b772673635a95a893f7083f7be6bd62227462b"
   integrity sha512-gVvagLCvYD0QXfnkxy6I48P6O+d7TEY0smc2VFuwldl1/clLVWE+KfBO/jFMaAz+nupTQeKvPhNTeyh3JAsCeA==
 
-truffle-contract-schema@^3.0.11:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/truffle-contract-schema/-/truffle-contract-schema-3.0.11.tgz#202f6982b51bcad032b7ff2a8d5837853fb69301"
-  integrity sha512-YcgSOlrufi6VtnXg8LU5Ma7JHzHpnZQxzB1PSWnb+JOTc1nL02XRoCWTgEO7PkJnFgf6yrwOpW0ajSwHk3zQ7Q==
+truffle-contract-schema@^3.0.13:
+  version "3.0.13"
+  resolved "https://registry.npmjs.org/truffle-contract-schema/-/truffle-contract-schema-3.0.13.tgz#8ace5734a0d57bfebc6ab3b60bf0883d46c68fdc"
+  integrity sha512-joF6oiG35xkRalc9Jeuq1NJ43jE3T0LVoWQ/8EhhGyE5E9PxYbUjNtdcj8ycOpn3BYFiomX2UUsgmt4W2U1Qtg==
   dependencies:
     ajv "^6.10.0"
     crypto-js "^3.1.9-1"
     debug "^4.1.0"
 
-truffle-contract@^4.0.1:
-  version "4.0.28"
-  resolved "https://registry.yarnpkg.com/truffle-contract/-/truffle-contract-4.0.28.tgz#0d9e9b5275126403650176663ef22a1731b02c88"
-  integrity sha512-4sODzvVPEdbyQhPGS0LSNPqog55xCXq0qgWIWGdX3mFGb5kKiseKBfUAyTb6uJ3Vbqy3UZA1HJRQahXTEmdeCg==
+truffle-contract@4.0.30:
+  version "4.0.30"
+  resolved "https://registry.npmjs.org/truffle-contract/-/truffle-contract-4.0.30.tgz#de0d7ac25c55dcafbe113f862f9a7fd5f83a1531"
+  integrity sha512-kQDqqhT6IPu1Vj111PzQvQ3xQiXx//cwFgMDZjaqRpBGuXGa5i80RxW+Vxfdn5pTrYk4pP0P7ZPyka9PJ248vw==
   dependencies:
     bignumber.js "^7.2.1"
     ethers "^4.0.0-beta.1"
     truffle-blockchain-utils "^0.0.10"
-    truffle-contract-schema "^3.0.11"
+    truffle-contract-schema "^3.0.13"
     truffle-error "^0.0.5"
-    truffle-interface-adapter "^0.2.3"
+    truffle-interface-adapter "^0.2.4"
     web3 "1.2.1"
     web3-core-promievent "1.2.1"
     web3-eth-abi "1.2.1"
@@ -15205,10 +15211,10 @@ truffle-error@^0.0.5:
   resolved "https://registry.yarnpkg.com/truffle-error/-/truffle-error-0.0.5.tgz#6b5740c9f3aac74f47b85d654fff7fe2c1fc5e0e"
   integrity sha512-JpzPLMPSCE0vaZ3vH5NO5u42GpMj/Y1SRBkQ6b69PSw3xMSH1umApN32cEcg1nnh8q5FNYc5FnKu0m4tiBffyQ==
 
-truffle-interface-adapter@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/truffle-interface-adapter/-/truffle-interface-adapter-0.2.3.tgz#475a425dd8eb27fbe54486b0b25e697bb184d0fa"
-  integrity sha512-NJLmlNZ/nHU52fMqa/nSxQvOSnejRQlKoBAs41ItUfBAhiQHb+gJupoYOlweOFC+Y9xj2X89qYjb1D0XDh0sfw==
+truffle-interface-adapter@^0.2.4:
+  version "0.2.5"
+  resolved "https://registry.npmjs.org/truffle-interface-adapter/-/truffle-interface-adapter-0.2.5.tgz#aa0bee635517b4a8e06adcdc99eacb993e68c243"
+  integrity sha512-EL39OpP8FcZ99ne1Rno3jImfb92Nectd4iVsZzoEUCBfbwHe7sr0k+i45guoruSoP8nMUE81Mov2s8I5pi6d9Q==
   dependencies:
     bn.js "^4.11.8"
     ethers "^4.0.32"

@@ -2,14 +2,14 @@
   "name": "@counterfactual/dapp-tic-tac-toe",
   "version": "0.1.2",
   "engines": {
-    "yarn": "1.12.3",
+    "yarn": "1.17.3",
     "node": "10.15.3"
   },
   "dependencies": {
-    "@counterfactual/apps": "0.1.5",
-    "@counterfactual/cf.js": "0.2.3",
-    "@counterfactual/types": "^0.0.33",
-    "@counterfactual/typescript-typings": "^0.1.0",
+    "@counterfactual/apps": "0.1.9",
+    "@counterfactual/cf.js": "0.2.6",
+    "@counterfactual/types": "0.0.38",
+    "@counterfactual/typescript-typings": "0.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",

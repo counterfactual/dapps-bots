@@ -2,7 +2,7 @@
   "name": "@counterfactual/dapp-high-roller",
   "version": "0.1.0",
   "engines": {
-    "yarn": "1.12.3",
+    "yarn": "1.17.3",
     "node": "10.15.3"
   },
   "scripts": {
@@ -16,9 +16,9 @@
     "test:e2e": "echo 'E2E tests are disabled, skipping'"
   },
   "dependencies": {
-    "@counterfactual/cf.js": "0.2.3",
-    "@counterfactual/types": "^0.0.33",
-    "@counterfactual/typescript-typings": "^0.1.0",
+    "@counterfactual/cf.js": "0.2.6",
+    "@counterfactual/types": "0.0.38",
+    "@counterfactual/typescript-typings": "0.1.2",
     "@stencil/core": "0.18.1-0",
     "@stencil/router": "0.3.3"
   },
