@@ -107,7 +107,7 @@ function respond(
         action
       },
       id: generateUUID(),
-      methodName: NodeTypes.MethodName.TAKE_ACTION
+      methodName: NodeTypes.RpcMethodName.TAKE_ACTION
     };
 
     node.rpcRouter.dispatch(request);

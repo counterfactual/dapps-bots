@@ -25,7 +25,7 @@ export async function getFreeBalance(
 
   const { result } = await node.rpcRouter.dispatch(rpc);
 
-  return result as NodeTypes.GetFreeBalanceStateResult;
+  return result.result as NodeTypes.GetFreeBalanceStateResult;
 }
 
 export function logEthFreeBalance(
@@ -74,7 +74,7 @@ export async function deposit(
   console.log(`\nDepositing ${amount} ETH into ${multisigAddress}\n`);
   try {
     await node.rpcRouter.dispatch({
-      methodName: NodeTypes.MethodName.DEPOSIT,
+      methodName: NodeTypes.RpcMethodName.DEPOSIT,
       id: generateUUID(),
       parameters: {
         multisigAddress,

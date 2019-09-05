@@ -6,6 +6,7 @@ import {
 } from "@counterfactual/node";
 import { Node as NodeTypes } from "@counterfactual/types";
 import { solidityKeccak256 } from "ethers/utils";
+
 import { getFreeBalance, logEthFreeBalance } from "./utils";
 
 // Keep in sync with high-roller-app.spec.ts
@@ -86,7 +87,7 @@ export async function connectNode(
     NodeTypes.EventName.PROPOSE_INSTALL_VIRTUAL,
     async (msg: ProposeVirtualMessage) => {
       const appInstanceId = msg.data.appInstanceId;
-      const intermediaries = msg.data.params.intermediaries;
+      const intermediaries = msg.data.params.intermediaryIdentifier;
 
       const request = {
         methodName: NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
