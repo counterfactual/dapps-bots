@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@counterfactual/cf.js": "0.2.6",
-    "@counterfactual/node": "0.2.66",
+    "@counterfactual/node": "0.2.72",
     "@counterfactual/types": "0.0.38",
     "@counterfactual/typescript-typings": "0.1.2",
     "@stencil/core": "0.18.1-0",

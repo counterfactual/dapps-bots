@@ -18,14 +18,14 @@ export async function getFreeBalance(
   multisigAddress: string
 ): Promise<NodeTypes.GetFreeBalanceStateResult> {
   const query = {
-    methodName: NodeTypes.MethodName.GET_FREE_BALANCE_STATE,
+    methodName: NodeTypes.RpcMethodName.GET_FREE_BALANCE_STATE,
     id: generateUUID(),
     parameters: { multisigAddress } as NodeTypes.GetFreeBalanceStateParams
   };
 
   const { result } = await node.rpcRouter.dispatch(query);
 
-  return result as NodeTypes.GetFreeBalanceStateResult;
+  return result.result as NodeTypes.GetFreeBalanceStateResult;
 }
 
 export function logEthFreeBalance(
@@ -64,7 +64,9 @@ export async function deposit(
   }
 
   if (!preDepositBalances[myFreeBalanceAddress]) {
-    throw new Error("My address not found");
+    throw new Error(
+      `My address not found: ${JSON.stringify(preDepositBalances)}`
+    );
   }
 
   const [counterpartyFreeBalanceAddress] = Object.keys(

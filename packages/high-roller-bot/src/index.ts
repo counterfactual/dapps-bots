@@ -120,7 +120,7 @@ let node: Node;
       token = bot.token;
       await store.set([
         {
-          key: TOKEN_PATH,
+          path: TOKEN_PATH,
           value: token!
         }
       ]);

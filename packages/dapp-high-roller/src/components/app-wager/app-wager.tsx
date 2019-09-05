@@ -1,4 +1,5 @@
 declare var ethers;
+declare var ethereum;
 
 import { Component, Element, Prop, State, Watch } from "@stencil/core";
 import { RouterHistory } from "@stencil/router";
@@ -45,8 +46,7 @@ export class AppWager {
   @Prop() updateOpponent: (opponent: any) => void = () => {};
 
   async componentWillLoad() {
-    this.myName = this.account.user.username;
-
+    this.myName = this.account.username;
     return await this.matchmake();
   }
 
@@ -67,7 +67,9 @@ export class AppWager {
         versionNumber: 0
       };
 
-      const currentEthBalance = ethers.utils.parseEther(this.account.balance);
+      const currentEthBalance = ethers.utils.parseEther(
+        this.account.balance.toString(10)
+      );
       const bet = ethers.utils.parseEther(this.betAmount);
 
       if (currentEthBalance.lt(bet)) {
@@ -94,7 +96,7 @@ export class AppWager {
 
       this.isWaiting = true;
     } catch (e) {
-      debugger;
+      console.error(e);
     }
   }
 
@@ -128,68 +130,9 @@ export class AppWager {
   }
 
   private async fetchMatchmake(): Promise<{ [key: string]: any }> {
-    if (this.standalone) {
-      return {
-        data: {
-          type: "matchmaking",
-          id: "2b83cb14-c7aa-5208-8da8-369aeb1a3f24",
-          attributes: {
-            intermediary: this.account.multisigAddress
-          },
-          relationships: {
-            users: {
-              data: {
-                type: "users",
-                id: this.account.user.id
-              }
-            },
-            matchedUser: {
-              data: {
-                type: "matchedUsers",
-                id: "3d54b508-b355-4323-8738-4cdf7290a2fd"
-              }
-            }
-          }
-        },
-        included: [
-          {
-            type: "users",
-            id: this.account.user.id,
-            attributes: {
-              username: this.account.user.username,
-              ethAddress: this.account.user.ethAddress
-            }
-          },
-          {
-            type: "matchedUsers",
-            id: "3d54b508-b355-4323-8738-4cdf7290a2fd",
-            attributes: {
-              username: "MyOpponent",
-              ethAddress: "0x12345"
-            }
-          }
-        ]
-      };
-    }
-
-    return new Promise(resolve => {
-      const onMatchmakeResponse = (event: MessageEvent) => {
-        if (
-          !event.data.toString().startsWith("playground:response:matchmake")
-        ) {
-          return;
-        }
-
-        window.removeEventListener("message", onMatchmakeResponse);
-
-        const [, data] = event.data.split("|");
-        resolve(JSON.parse(data));
-      };
-
-      window.addEventListener("message", onMatchmakeResponse);
-
-      window.parent.postMessage("playground:request:matchmake", "*");
-    });
+    const data = await ethereum.send("counterfactual:request:matchmake");
+    const opponent = { data: data.result };
+    return opponent;
   }
 
   render() {

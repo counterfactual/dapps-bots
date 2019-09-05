@@ -61,11 +61,7 @@ export class AppProvider {
   @Prop() intermediary: string = "";
 
   async componentWillLoad() {
-    const params = new URLSearchParams(window.location.search);
-
-    this.nodeProvider = !params.get("standalone")
-      ? new cf.NodeProvider()
-      : new MockNodeProvider();
+    this.nodeProvider = new cf.NodeProviderEthereum();
 
     await this.nodeProvider.connect();
 

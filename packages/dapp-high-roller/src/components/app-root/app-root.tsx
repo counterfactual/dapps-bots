@@ -19,9 +19,25 @@ import {
 
 declare var ethers;
 declare var web3;
+declare var ethereum;
 
-const { solidityKeccak256 } = ethers.utils;
+const {
+  bigNumberify,
+  computeAddress,
+  solidityKeccak256,
+  HDNode
+} = ethers.utils;
+
 const { HashZero } = ethers.constants;
+const { fromExtendedKey } = HDNode;
+
+function xkeyKthAddress(xkey: string, k: number): string {
+  return computeAddress(xkeyKthHDNode(xkey, k).publicKey);
+}
+
+function xkeyKthHDNode(xkey: string, k: number): any {
+  return fromExtendedKey(xkey).derivePath(`${k}`);
+}
 
 @Component({
   tag: "app-root",
@@ -122,21 +138,18 @@ export class AppRoot {
   }
 
   async componentDidLoad() {
-    window.parent.postMessage("playground:request:user", "*");
-
-    if (this.state.standalone) {
-      const mockAccount = {
-        user: {
-          address: "0xc60b9023bb8dc153b4046977328ce79af12a77e0",
-          email: "alon2@example.com",
-          id: "687297bc-8014-4c82-8cee-3b7ca7db09d4",
-          username: "MyName"
-        },
-        multisigAddress: "0x9499ac5A66c36447e535d252c049304D80961CED"
-      };
-      this.updateAccount(mockAccount);
-      this.userDataReceived = true;
-    }
+    const userResult = await ethereum.send("counterfactual:request:user");
+    const account = userResult.result;
+    const balancesResult = await ethereum.send(
+      "counterfactual:request:balances",
+      [account.multisigAddress]
+    );
+    const freeBalance = balancesResult.result;
+    const freeBalanceAddress = xkeyKthAddress(account.nodeAddress, 0);
+    const myBalance = bigNumberify(freeBalance[freeBalanceAddress]);
+    account.balance = myBalance;
+    this.updateAccount(account);
+    this.userDataReceived = true;
   }
 
   receiveRouterHistory(history: RouterHistory) {
@@ -145,8 +158,7 @@ export class AppRoot {
 
   updateAccount(account: any) {
     this.state = { ...this.state, account };
-
-    ga("set", "userId", account.user.id);
+    ga("set", "userId", account.id);
   }
 
   updateOpponent(opponent: any) {

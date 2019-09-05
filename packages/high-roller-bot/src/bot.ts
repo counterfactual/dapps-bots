@@ -6,7 +6,6 @@ import {
 } from "@counterfactual/node";
 import { Node as NodeTypes } from "@counterfactual/types";
 import { solidityKeccak256 } from "ethers/utils";
-import { v4 as generateUUID } from "uuid";
 
 import { getFreeBalance, logEthFreeBalance } from "./utils";
 
@@ -71,7 +70,7 @@ function respond(
         appInstanceId,
         action: commitHashAction
       } as NodeTypes.TakeActionParams,
-      id: generateUUID(),
+      id: Date.now(),
       methodName: NodeTypes.RpcMethodName.TAKE_ACTION
     };
     node.rpcRouter.dispatch(request);
@@ -88,18 +87,19 @@ export async function connectNode(
     NodeTypes.EventName.PROPOSE_INSTALL_VIRTUAL,
     async (msg: ProposeVirtualMessage) => {
       const appInstanceId = msg.data.appInstanceId;
-      const intermediaries = msg.data.params.intermediaries;
+      const intermediaries = msg.data.params.intermediaryIdentifier;
 
       const request = {
-        methodName: NodeTypes.MethodName.INSTALL_VIRTUAL,
+        methodName: NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
         parameters: {
           appInstanceId,
           intermediaries
         },
-        id: generateUUID()
+        id: Date.now()
       };
 
       try {
+        console.log("Installing app");
         await node.rpcRouter.dispatch(request);
         node.on(
           NodeTypes.EventName.UPDATE_STATE,
