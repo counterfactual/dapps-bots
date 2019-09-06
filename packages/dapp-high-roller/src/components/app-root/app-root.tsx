@@ -16,6 +16,7 @@ import {
   HighRollerUIMutableState,
   HighRollerUIState
 } from "../../data/types";
+import { getHighRollerContractAddress } from "../../utils/utils";
 
 declare var ethers;
 declare var web3;
@@ -193,45 +194,38 @@ export class AppRoot {
     // The Contract interface
     const abi = [
       `
-      function highRoller(bytes32 randomness)
-        public
+      function cutBytes32(bytes32 h)
+        internal
         pure
-        returns(uint8 playerFirstTotal, uint8 playerSecondTotal)
-    `
+        returns (bytes8 q1, bytes8 q2, bytes8 q3, bytes8 q4)
+      `,
+      `
+      function bytes8toDiceRoll(bytes8 q)
+        internal
+        pure
+        returns (uint8)
+      `
     ];
 
     // Connect to the network
     const provider = new ethers.providers.Web3Provider(web3.currentProvider);
 
-    const contractAddress = "0x144F1A5C2db59B58f2c73d09A2acb27a57E47618";
+    const contractAddress = getHighRollerContractAddress();
 
     // We connect to the Contract using a Provider, so we will only
     // have read-only access to the Contract
     const contract = new ethers.Contract(contractAddress, abi, provider);
-
-    const result = await contract.highRoller(randomness);
+    const {
+      playerFirstRollOne,
+      playerFirstRollTwo,
+      playerSecondRollOne,
+      playerSecondRollTwo
+    } = await contract.getPlayerRolls(randomness);
 
     return {
-      playerFirstRoll: this.getDieNumbers(result[0]),
-      playerSecondRoll: this.getDieNumbers(result[1])
+      playerFirstRoll: [playerFirstRollOne, playerFirstRollTwo],
+      playerSecondRoll: [playerSecondRollOne, playerSecondRollTwo]
     };
-  }
-
-  getDieNumbers(totalSum: number): [number, number] {
-    // Choose result for each die.
-    if (totalSum === 12) {
-      return [6, 6];
-    }
-
-    if (totalSum > 2 && totalSum < 12) {
-      return [Math.floor(totalSum / 2), Math.ceil(totalSum / 2)];
-    }
-
-    if (totalSum > 2 && totalSum % 2 === 0) {
-      return [Math.floor(totalSum / 2) - 1, Math.ceil(totalSum / 2) + 1];
-    }
-
-    return [totalSum / 2, totalSum / 2];
   }
 
   goToGame(history: RouterHistory, isProposing: boolean = true) {

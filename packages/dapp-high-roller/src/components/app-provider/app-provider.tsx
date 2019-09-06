@@ -12,6 +12,7 @@ import HighRollerUITunnel from "../../data/high-roller";
 import { AppInstance } from "../../data/mock-app-instance";
 import MockNodeProvider from "../../data/mock-node-provider";
 import { cf, HighRollerUIMutableState, Node } from "../../data/types";
+import { getHighRollerContractAddress } from "../../utils/utils";
 
 declare var cf;
 declare var ethers;
@@ -79,11 +80,10 @@ export class AppProvider {
     this.cfProvider.on("chan_uninstall", this.onUninstall.bind(this));
     this.cfProvider.on("chan_installVirtual", this.onInstall.bind(this));
 
-    const highRollerAppDefinitionAddr =
-      "0x144F1A5C2db59B58f2c73d09A2acb27a57E47618";
+    const contractAddress = getHighRollerContractAddress();
+
     this.appFactory = new cf.AppFactory(
-      // TODO: This probably should be in a configuration, somewhere.
-      highRollerAppDefinitionAddr,
+      contractAddress,
       {
         actionEncoding:
           "tuple(uint8 actionType, uint256 number, bytes32 actionHash)",
