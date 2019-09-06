@@ -804,15 +804,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@counterfactual/apps@0.1.9":
-  version "0.1.9"
-  resolved "https://registry.npmjs.org/@counterfactual/apps/-/apps-0.1.9.tgz#1d97db0c83b9b53698ec42e9ea03b114b19ffa65"
-  integrity sha512-m2km0IoP+uNd70WZc/tDt6O84hvevmdaWxEN+2e+7RX6Uphzh5kJ5wLD0bLygB/shX3ptCcR40w6g7xVP5vt1w==
-
-"@counterfactual/apps@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@counterfactual/apps/-/apps-0.1.11.tgz#37d154cfa91e586801af8c3fef18fc07c5c890d1"
-  integrity sha512-+eEfMCWbDegT4adglPgkxNVSjgywwk7PG4A42Y66dFfAntsHBV3DachvQj4VeAPf+tGwnmUTKyn+ez7lr2r57g==
+"@counterfactual/apps@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@counterfactual/apps/-/apps-0.1.12.tgz#c0f66a0db276422022cefffc01bca3c9131d9687"
+  integrity sha512-/PeNs62eEU9QMyG4LUTle1oGm+toAdipwbt0EZZAyIuxEbNYErsXyRxw6scUI4LNw4uYARpZqEs0fGmX1y1Bhw==
 
 "@counterfactual/cf-adjudicator-contracts@0.0.4":
   version "0.0.4"

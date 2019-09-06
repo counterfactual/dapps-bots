@@ -6,7 +6,7 @@
     "node": "10.15.3"
   },
   "dependencies": {
-    "@counterfactual/apps": "0.1.9",
+    "@counterfactual/apps": "0.1.12",
     "@counterfactual/cf.js": "0.2.6",
     "@counterfactual/types": "0.0.38",
     "@counterfactual/typescript-typings": "0.1.2",
