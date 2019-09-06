@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import { ReactComponent as Logo } from "./assets/images/logo.svg";
 import Waiting from "./Waiting";
 
+const ethereum = window["ethereum"];
+
 class Wager extends Component {
   constructor(props) {
     super(props);
@@ -69,9 +71,8 @@ class Wager extends Component {
 
   createAppFactory() {
     let contractAddress;
-    // const networkVersion = window["web3"].currentProvider.networkVersion;
-    // FIXME: hard-coding to use Kovan until we fix this
-    const networkVersion = "42";
+    const networkVersion =
+      ethereum && ethereum.networkVersion ? ethereum.networkVersion : "42";
     const contractName = "TicTacToeApp";
     switch (networkVersion) {
       case "3":
@@ -111,9 +112,7 @@ class Wager extends Component {
 
     if (currentEthBalance.lt(bet)) {
       this.setState({
-        error: `Insufficient funds: You need at least ${
-          this.props.gameInfo.betAmount
-        } ETH to play.`
+        error: `Insufficient funds: You need at least ${this.props.gameInfo.betAmount} ETH to play.`
       });
       return;
     }
