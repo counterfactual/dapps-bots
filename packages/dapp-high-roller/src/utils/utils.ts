@@ -1,4 +1,6 @@
+// @ts-ignore - no idea why this causes an error...
 import RopstenContracts from "@counterfactual/apps/networks/3.json";
+// @ts-ignore - no idea why this causes an error...
 import KovanContracts from "@counterfactual/apps/networks/42.json";
 
 declare var ethereum;
