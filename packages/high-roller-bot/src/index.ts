@@ -5,7 +5,11 @@ import {
   FIREBASE_CONFIGURATION_ENV_KEYS,
   FirebaseServiceFactory
 } from "@counterfactual/firebase-client";
-import { EXTENDED_PRIVATE_KEY_PATH, Node } from "@counterfactual/node";
+import {
+  EthereumNetworkName,
+  EXTENDED_PRIVATE_KEY_PATH,
+  Node
+} from "@counterfactual/node";
 import { Wallet } from "ethers";
 import { JsonRpcProvider } from "ethers/providers";
 import { fromExtendedKey } from "ethers/utils/hdnode";
@@ -69,7 +73,7 @@ let node: Node;
 
   await store.set([
     {
-      key: EXTENDED_PRIVATE_KEY_PATH,
+      path: EXTENDED_PRIVATE_KEY_PATH,
       value: process.env.NODE_EXTENDED_PRIVATE_KEY
     }
   ]);
@@ -82,7 +86,7 @@ let node: Node;
       STORE_KEY_PREFIX: "store"
     },
     provider,
-    "kovan"
+    EthereumNetworkName.Kovan
   );
 
   console.log(`Node Public Identifier: ${node.publicIdentifier}`);
@@ -120,7 +124,7 @@ let node: Node;
       token = bot.token;
       await store.set([
         {
-          key: TOKEN_PATH,
+          path: TOKEN_PATH,
           value: token!
         }
       ]);

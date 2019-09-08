@@ -834,6 +834,16 @@
   resolved "https://registry.npmjs.org/@counterfactual/cf-adjudicator-contracts/-/cf-adjudicator-contracts-0.0.4.tgz#962a829767d64a34925be7e728052ad9a482a391"
   integrity sha512-ef+BneMaUmCfX1xyDNp8YsUnN/npOKEdCuDSwFhUwzStesfH8KiMxnnoNCJbGydsCy+CoSCVGKRM47rCkaJm2Q==
 
+"@counterfactual/cf-adjudicator-contracts@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@counterfactual/cf-adjudicator-contracts/-/cf-adjudicator-contracts-0.0.6.tgz#75c960328c74fabff0d3f5d9da49776027617d7e"
+  integrity sha512-c7U3NCZIlf4yODMCY/c+7b3L16ApQTzenNcnEuPez1YhoKeIKvetCAyYq4A+6xboXGQzDa6ZD7zYusXJIQiFhQ==
+
+"@counterfactual/cf-funding-protocol-contracts@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@counterfactual/cf-funding-protocol-contracts/-/cf-funding-protocol-contracts-0.0.10.tgz#fac526e94633c2b4b7ff6e6813e3a6f4182c790d"
+  integrity sha512-7SHiCh3l2IQV5Fksc/aVCOJySZAnp3zpSuaQI4FTyC4XhFrD03wrANaAi4PI/Hj6NUKvXnmCxMH41fWlg3u57A==
+
 "@counterfactual/cf-funding-protocol-contracts@0.0.7":
   version "0.0.7"
   resolved "https://registry.npmjs.org/@counterfactual/cf-funding-protocol-contracts/-/cf-funding-protocol-contracts-0.0.7.tgz#0801ce16d11994fdad23a0ae36f6dfbf021fb06e"
@@ -880,6 +890,24 @@
   dependencies:
     "@counterfactual/cf-adjudicator-contracts" "0.0.4"
     "@counterfactual/cf-funding-protocol-contracts" "0.0.7"
+    "@counterfactual/cf.js" "0.2.6"
+    "@counterfactual/firebase-client" "0.0.6"
+    "@counterfactual/types" "0.0.38"
+    ethers "4.0.36"
+    eventemitter3 "^4.0.0"
+    loglevel "^1.6.1"
+    p-queue "^5.0.0"
+    rpc-server "0.0.1"
+    typescript-memoize "^1.0.0-alpha.3"
+    uuid "^3.3.2"
+
+"@counterfactual/node@0.2.73":
+  version "0.2.73"
+  resolved "https://registry.yarnpkg.com/@counterfactual/node/-/node-0.2.73.tgz#424a4d6ba40681a61be6ecc280436dd3cc90467c"
+  integrity sha512-QyA7kwbRS3TwKQEADajf7Jt55NVRV/8DcSMaL/HknFEzJXG0N6IvCsrPiTELxFUWjJfXWhqO9igOeyRMKrr6sg==
+  dependencies:
+    "@counterfactual/cf-adjudicator-contracts" "0.0.6"
+    "@counterfactual/cf-funding-protocol-contracts" "0.0.10"
     "@counterfactual/cf.js" "0.2.6"
     "@counterfactual/firebase-client" "0.0.6"
     "@counterfactual/types" "0.0.38"
@@ -6259,10 +6287,10 @@ ethers@4.0.0-beta.3:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-ethers@4.0.33, ethers@^4.0.0-beta.1, ethers@^4.0.32:
-  version "4.0.33"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.33.tgz#f7b88d2419d731a39aefc37843a3f293e396f918"
-  integrity sha512-lAHkSPzBe0Vj+JrhmkEHLtUEKEheVktIjGDyE9gbzF4zf1vibjYgB57LraDHu4/ItqWVkztgsm8GWqcDMN+6vQ==
+ethers@4.0.36:
+  version "4.0.36"
+  resolved "https://registry.npmjs.org/ethers/-/ethers-4.0.36.tgz#96519fd3cc9317f938c8ee4d22050f34e3c2ef0e"
+  integrity sha512-rWdchEhUyXx01GiwexH6Sha97CQ9tJdQwe6FtYKxShC7VEZV41nuKt+lzCQ4OqvQwZK5PcAKaAZv2GDsCH33SA==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
@@ -6275,10 +6303,10 @@ ethers@4.0.33, ethers@^4.0.0-beta.1, ethers@^4.0.32:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-ethers@4.0.36:
-  version "4.0.36"
-  resolved "https://registry.npmjs.org/ethers/-/ethers-4.0.36.tgz#96519fd3cc9317f938c8ee4d22050f34e3c2ef0e"
-  integrity sha512-rWdchEhUyXx01GiwexH6Sha97CQ9tJdQwe6FtYKxShC7VEZV41nuKt+lzCQ4OqvQwZK5PcAKaAZv2GDsCH33SA==
+ethers@^4.0.0-beta.1, ethers@^4.0.32:
+  version "4.0.33"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.33.tgz#f7b88d2419d731a39aefc37843a3f293e396f918"
+  integrity sha512-lAHkSPzBe0Vj+JrhmkEHLtUEKEheVktIjGDyE9gbzF4zf1vibjYgB57LraDHu4/ItqWVkztgsm8GWqcDMN+6vQ==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
