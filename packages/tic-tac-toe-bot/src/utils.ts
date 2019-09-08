@@ -17,13 +17,13 @@ export async function getFreeBalance(
   node: Node,
   multisigAddress: string
 ): Promise<NodeTypes.GetFreeBalanceStateResult> {
-  const query = {
-    methodName: NodeTypes.MethodName.GET_FREE_BALANCE_STATE,
+  const rpc = {
+    methodName: NodeTypes.RpcMethodName.GET_FREE_BALANCE_STATE,
     id: generateUUID(),
     parameters: { multisigAddress } as NodeTypes.GetFreeBalanceStateParams
   };
 
-  const { result } = await node.rpcRouter.dispatch(query);
+  const { result } = await node.rpcRouter.dispatch(rpc);
 
   return result as NodeTypes.GetFreeBalanceStateResult;
 }

@@ -74,7 +74,7 @@ export async function deposit(
   console.log(`\nDepositing ${amount} ETH into ${multisigAddress}\n`);
   try {
     await node.rpcRouter.dispatch({
-      methodName: NodeTypes.MethodName.DEPOSIT,
+      methodName: NodeTypes.RpcMethodName.DEPOSIT,
       id: generateUUID(),
       parameters: {
         multisigAddress,

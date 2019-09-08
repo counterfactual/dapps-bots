@@ -88,13 +88,13 @@ export async function connectNode(
     NodeTypes.EventName.PROPOSE_INSTALL_VIRTUAL,
     async (msg: ProposeVirtualMessage) => {
       const appInstanceId = msg.data.appInstanceId;
-      const intermediaries = msg.data.params.intermediaries;
+      const intermediaryIdentifier = msg.data.params.intermediaryIdentifier;
 
       const request = {
-        methodName: NodeTypes.MethodName.INSTALL_VIRTUAL,
+        methodName: NodeTypes.RpcMethodName.INSTALL_VIRTUAL,
         parameters: {
           appInstanceId,
-          intermediaries
+          intermediaryIdentifier
         },
         id: generateUUID()
       };
